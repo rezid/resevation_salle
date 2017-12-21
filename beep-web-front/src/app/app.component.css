@@ -1,20 +1,11 @@
-
+.app-search-bar {
+  padding-top: 6rem;
+  padding-bottom: 3rem;
+  margin-bottom: 0;
+  background-color: #fff;
+}
   
-  .navbar {
-    margin-bottom: 0;
-  }
   
-  .app-search-bar {
-    padding-top: 6rem;
-    padding-bottom: 3rem;
-    margin-bottom: 0;
-    background-color: #fff;
-  }
-  
-
-
-
- 
   
   .album {
    
@@ -30,7 +21,7 @@
 
     padding: 1.75rem;
     margin-bottom: 0rem;
-    border: 0;
+
   }
   
   .card > img {
