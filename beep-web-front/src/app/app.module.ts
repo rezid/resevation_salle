@@ -10,6 +10,7 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegistredFormComponent } from './registred-form/registred-form.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RegistredFormComponent } from './registred-form/registred-form.componen
     AppComponent,
     NavbarComponent,
     LoginFormComponent,
-    RegistredFormComponent
+    RegistredFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,
