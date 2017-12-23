@@ -6,12 +6,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
-import { AuthService } from './services/auth-service/auth.service';
+import { AuthService } from './core/services/auth-service/auth.service';
 import { FIREBASE_CONFIG } from './app.firebase.config';
-import { NavbarComponent } from './navbar/navbar.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { RegistredFormComponent } from './registred-form/registred-form.component';
-import { RegisterFormComponent } from './register-form/register-form.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { LoginFormComponent } from './auth/component/login-form/login-form.component';
+import { RegistredFormComponent } from './auth/component/registred-form/registred-form.component';
+import { RegisterFormComponent } from './auth/component/register-form/register-form.component';
 import { routes } from './app.routes';
 import { HomeComponent } from './home/home.component';
 
@@ -19,7 +19,7 @@ import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
+    HeaderComponent,
     LoginFormComponent,
     RegistredFormComponent,
     RegisterFormComponent,

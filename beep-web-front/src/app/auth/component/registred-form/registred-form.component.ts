@@ -1,5 +1,5 @@
 import { Component,Output, EventEmitter, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth-service/auth.service';
+import { AuthService } from '../../../core/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-registred-form',

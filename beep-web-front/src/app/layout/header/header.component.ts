@@ -1,14 +1,14 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
-import { LoginResponse } from '../models/login-response/login-response';
-import { AuthService } from '../services/auth-service/auth.service';
+import { LoginResponse } from '../../core/models/login-response/login-response';
+import { AuthService } from '../../core/services/auth-service/auth.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
   isRegistred = true;
 

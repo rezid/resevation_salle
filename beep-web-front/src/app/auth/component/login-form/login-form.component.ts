@@ -1,8 +1,8 @@
 import { Component, Output, OnInit, EventEmitter } from '@angular/core';
 
-import { AuthService } from '../services/auth-service/auth.service';
-import { Account } from '../models/account/account';
-import { LoginResponse } from '../models/login-response/login-response';
+import { AuthService } from '../../../core/services/auth-service/auth.service';
+import { Account } from '../../../core/models/account/account';
+import { LoginResponse } from '../../../core/models/login-response/login-response';
 
 @Component({
   selector: 'app-login-form',
