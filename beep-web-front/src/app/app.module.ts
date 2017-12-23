@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule} from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
@@ -11,6 +12,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegistredFormComponent } from './registred-form/registred-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { routes } from './app.routes';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -19,11 +22,13 @@ import { RegisterFormComponent } from './register-form/register-form.component';
     NavbarComponent,
     LoginFormComponent,
     RegistredFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule
   ],
