@@ -1,0 +1,54 @@
+
+
+<div class="row text-center">
+  <div class="col-md-8 m-0 p-0">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="activeDayIsOpen = false">
+        Mois precedent
+      </div>
+      <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate">
+        Aujourdhui
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="activeDayIsOpen = false">
+        Mois suivant
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 m-0 p-0">
+    <h3>{{ getMonth(viewDate.getMonth()) }} {{ viewDate.getFullYear() }}</h3>
+  </div>
+  
+</div>
+<br>
+
+<mwl-calendar-month-view 
+  [viewDate]="viewDate"
+  [events]="events" 
+  [refresh]="refresh" 
+  [activeDayIsOpen]="activeDayIsOpen"
+  (dayClicked)="dayClicked($event.day)"  
+  (eventTimesChanged)="eventTimesChanged($event)">
+</mwl-calendar-month-view>
+
+
+<h3>
+  <button
+    class="btn btn-primary pull-right"
+    (click)="addEvent()">
+    Reserver
+  </button>
+  <div class="clearfix"></div>
+</h3>

@@ -3,6 +3,8 @@ import { Room } from '../core/models/room/room';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../core/services/data-service/data.service';
 import { Profile } from '../core/models/profile/profile';
+import { Observable } from 'rxjs/Observable';
+import { Reservation } from '../core/models/reservation/reservation';
 
 @Component({
   selector: 'app-room',
@@ -12,6 +14,7 @@ import { Profile } from '../core/models/profile/profile';
 export class RoomComponent implements OnInit {
 
   @Input() roomId: string;
+  reservationList$: Observable<Reservation[]>;
 
   room: Room;
   profile: Profile;
@@ -32,10 +35,10 @@ export class RoomComponent implements OnInit {
         this.data
           .getProfileByRoomId(this.roomId)
           .subscribe(profile => this.profile = profile);
+        this.reservationList$ = this.data.getReservationListByRoomId(this.roomId);
       });
-
-
-
   }
+
+
 
 }

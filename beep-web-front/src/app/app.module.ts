@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule} from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { CalendarModule } from 'angular-calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
@@ -19,6 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { RoomListComponent } from './home/room-list/room-list.component';
 import { RoomComponent } from './room/room.component';
+import { CalendarComponent } from './room/calendar/calendar.component';
 
 
 @NgModule({
@@ -31,12 +34,15 @@ import { RoomComponent } from './room/room.component';
     HomeComponent,
     FooterComponent,
     RoomListComponent,
-    RoomComponent
+    RoomComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
+    CalendarModule.forRoot(),
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule
   ],

@@ -7,6 +7,8 @@ import { Room } from '../../models/room/room';
 import { ROOM_LIST } from '../../mocks/room.mocks';
 import { Profile } from '../../models/profile/profile';
 import { PROFILE_LIST } from '../../mocks/profile.mocks';
+import { Reservation } from '../../models/reservation/reservation';
+import { RESERVATION_LIST } from '../../mocks/reservation.mocks';
 
 @Injectable()
 export class DataService {
@@ -24,6 +26,10 @@ export class DataService {
 
   getProfileByRoomId(id: string): Observable<Profile> {
     return Observable.of(PROFILE_LIST[0]);
+  }
+
+  getReservationListByRoomId(id: string): Observable<Reservation[]> {
+    return Observable.of(RESERVATION_LIST);
   }
 
 }
