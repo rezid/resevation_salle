@@ -16,7 +16,7 @@ import { RegistredFormComponent } from './layout/header/registred-form/registred
 import { RegisterFormComponent } from './auth/component/register-form/register-form.component';
 import { routes } from './app.routes';
 import { HomeComponent } from './home/home.component';
-import { FooterComponent } from './layout/header/footer/footer.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 
 @NgModule({
