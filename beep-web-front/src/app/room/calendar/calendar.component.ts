@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { CalendarEvent, CalendarEventTimesChangedEvent } from 'angular-calendar';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { CalendarEvent, CalendarEventTimesChangedEvent, CalendarMonthViewDay } from 'angular-calendar';
 import { Subject } from 'rxjs/Subject';
 import {
   startOfDay,
@@ -33,12 +33,12 @@ const colors: any = {
 
 @Component({
   selector: 'app-calendar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit, OnDestroy {
-
-
 
   @Input() reservationList$: Observable<Reservation[]>;
   @Output() dataClickedEvent: EventEmitter<Date>;
@@ -48,14 +48,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   viewDate: Date = new Date();
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start: new Date(2017, 11, 10) ,
-      end: new Date(2017, 11, 10),
-      title: 'Deja reservé pour cette date',
-      color: colors.blue,
-    },
-  ];
+  events: CalendarEvent[] = [];
 
   activeDayIsOpen = true;
 
@@ -117,6 +110,14 @@ export class CalendarComponent implements OnInit, OnDestroy {
     const monthNames = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'May', 'Join',
       'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
     return monthNames[monthNumber];
+  }
+
+  beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
+    body.forEach(day => {
+      if (day.events.length && day.inMonth) {
+        day.cssClass = 'reserved-cell';
+      }
+    });
   }
 
 }

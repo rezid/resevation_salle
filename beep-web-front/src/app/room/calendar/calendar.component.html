@@ -40,15 +40,6 @@
   [refresh]="refresh" 
   [activeDayIsOpen]="activeDayIsOpen"
   (dayClicked)="dayClicked($event.day)"  
-  (eventTimesChanged)="eventTimesChanged($event)">
+  (eventTimesChanged)="eventTimesChanged($event)"
+  (beforeViewRender)="beforeMonthViewRender($event)">
 </mwl-calendar-month-view>
-
-
-<h3>
-  <button
-    class="btn btn-primary pull-right"
-    (click)="addEvent()">
-    Reserver
-  </button>
-  <div class="clearfix"></div>
-</h3>
