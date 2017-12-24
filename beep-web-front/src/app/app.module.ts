@@ -17,6 +17,7 @@ import { RegisterFormComponent } from './auth/component/register-form/register-f
 import { routes } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { RoomListComponent } from './home/room-list/room-list.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FooterComponent } from './layout/footer/footer.component';
     RegistredFormComponent,
     RegisterFormComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    RoomListComponent
   ],
   imports: [
     BrowserModule,
