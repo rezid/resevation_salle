@@ -7,7 +7,7 @@ const roomList: Room[] = [
         nameName: 'Le Void',
         description: 'Dansgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, ',
         address: ADDRESS_LIST[0],
-        type: 'Salle de musique',
+        type: 'musique',
         price: 203, // par jour
         size: 150, // en metre carré
         capacity: 200,
@@ -21,7 +21,7 @@ const roomList: Room[] = [
         nameName: 'La Vesselle',
         description: 's<lknfglk sgdsdgmusie oriontal sdgsgs sdgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, ',
         address: ADDRESS_LIST[1],
-        type: 'Salle de musique',
+        type: 'musique',
         price: 203, // par jour
         size: 150, // en metre carré
         capacity: 200,
@@ -35,7 +35,7 @@ const roomList: Room[] = [
         nameName: 'Le Void',
         description: 'Dansgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, ',
         address: ADDRESS_LIST[2],
-        type: 'Salle de musique',
+        type: 'musique',
         price: 203, // par jour
         size: 150, // en metre carré
         capacity: 200,
@@ -49,7 +49,7 @@ const roomList: Room[] = [
         nameName: 'Le Void',
         description: 'Dansgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, ',
         address: ADDRESS_LIST[0],
-        type: 'Salle de musique',
+        type: 'musique',
         price: 203, // par jour
         size: 150, // en metre carré
         capacity: 200,
@@ -63,7 +63,7 @@ const roomList: Room[] = [
         nameName: 'Le Void',
         description: 'Dansgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, ',
         address: ADDRESS_LIST[1],
-        type: 'Salle de musique',
+        type: 'musique',
         price: 203, // par jour
         size: 150, // en metre carré
         capacity: 200,
@@ -77,7 +77,7 @@ const roomList: Room[] = [
         nameName: 'Le Void',
         description: 'Dansgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, ',
         address: ADDRESS_LIST[0],
-        type: 'Salle de musique',
+        type: 'musique',
         price: 203, // par jour
         size: 150, // en metre carré
         capacity: 200,
@@ -91,7 +91,7 @@ const roomList: Room[] = [
         nameName: 'Le Void',
         description: 'Dansgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, Dans un aire plein de musie oriontal sdgsgs sdgsdg, ',
         address: ADDRESS_LIST[0],
-        type: 'Salle de musique',
+        type: 'musique',
         price: 203, // par jour
         size: 150, // en metre carré
         capacity: 200,

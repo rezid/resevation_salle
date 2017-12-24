@@ -18,6 +18,7 @@ import { routes } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { RoomListComponent } from './home/room-list/room-list.component';
+import { RoomComponent } from './room/room.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { RoomListComponent } from './home/room-list/room-list.component';
     RegisterFormComponent,
     HomeComponent,
     FooterComponent,
-    RoomListComponent
+    RoomListComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,

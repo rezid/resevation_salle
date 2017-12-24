@@ -5,6 +5,8 @@ import 'rxjs/add/observable/of';
 
 import { Room } from '../../models/room/room';
 import { ROOM_LIST } from '../../mocks/room.mocks';
+import { Profile } from '../../models/profile/profile';
+import { PROFILE_LIST } from '../../mocks/profile.mocks';
 
 @Injectable()
 export class DataService {
@@ -13,7 +15,15 @@ export class DataService {
 
 
   getAllRooms(): Observable<Room[]> {
-    return  Observable.of(ROOM_LIST);
+    return Observable.of(ROOM_LIST);
+  }
+
+  getRoomByRoomId(id: string): Observable<Room> {
+    return Observable.of(ROOM_LIST[0]);
+  }
+
+  getProfileByRoomId(id: string): Observable<Profile> {
+    return Observable.of(PROFILE_LIST[0]);
   }
 
 }
