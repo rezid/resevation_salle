@@ -101,4 +101,4 @@ const roomList: Room[] = [
     }
 ];
 
-export const ROOMS_LIST = roomList;
+export const ROOM_LIST = roomList;

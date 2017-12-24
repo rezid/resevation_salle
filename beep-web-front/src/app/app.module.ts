@@ -5,8 +5,10 @@ import { RouterModule} from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+
 import { AppComponent } from './app.component';
 import { AuthService } from './core/services/auth-service/auth.service';
+import { DataService } from './core/services/data-service/data.service';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { HeaderComponent } from './layout/header/header.component';
 import { LoginFormComponent } from './layout/header/login-form/login-form.component';
@@ -14,6 +16,7 @@ import { RegistredFormComponent } from './layout/header/registred-form/registred
 import { RegisterFormComponent } from './auth/component/register-form/register-form.component';
 import { routes } from './app.routes';
 import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './layout/header/footer/footer.component';
 
 
 @NgModule({
@@ -23,7 +26,8 @@ import { HomeComponent } from './home/home.component';
     LoginFormComponent,
     RegistredFormComponent,
     RegisterFormComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import { HomeComponent } from './home/home.component';
     AngularFireAuthModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })
