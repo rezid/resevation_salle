@@ -2,4 +2,6 @@
   <input class="form-control mr-sm-2" name="email" type="text" placeholder="Votre e-mail ou pseudo" [(ngModel)]="account.email">
   <input class="form-control mr-sm-2" name="password" type="password" placeholder="Mot de passe" [(ngModel)]="account.password">
   <button type="button" class="btn btn-success my-2 my-sm-0" (click)="login()">Connexion</button>
+  <button type="button" class="btn btn-danger my-2 my-sm-0" routerLink="register">Créer un compte</button>
 </form>
+
