@@ -3,6 +3,6 @@ export interface Profile {
     lastName: string;
     dateOfBirth: Date;
     phoneNumber: string;
-    avatar: string;
+    avatar?: string;
     email: string;
 }

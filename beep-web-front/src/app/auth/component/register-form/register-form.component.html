@@ -1,3 +1,117 @@
-<p>
-  register-form works!
-</p>
+<div class="default">
+  <section>
+
+
+    <main class="body container-full">
+
+      <div class="row register-container" data-hook="">
+        <div id="content" class="col-sm-12" data-hook="">
+          <div class="col-md-5 col-centered">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Signup to {{title}}</h3>
+              </div>
+              <div id="existing-customer" class="panel-body" data-hook="login">
+                <div class="register-third-party-register">
+                  <p class="register-button-info-text register-info-text">EASILY USING</p>
+                  <div class="register-button-container">
+                    <button class="register-facebook register-button coming-soon">
+                      <span class="register-fb-logo register-sprite"></span>
+                      FACEBOOK
+                    </button>
+                    <button class="register-google register-button coming-soon" id="gPlusLogin">
+                      <span class="register-gplus-logo register-sprite"></span>
+                      GOOGLE
+                    </button>
+                  </div>
+                </div>
+                <p class="register-button-info-text register-info-text">- OR USING EMAIL -</p>
+                <form class="register-register-form" novalidate="" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                  <fieldset class="register-input-container">
+
+                    <div class="register-input-item">
+                      <input type="email" class="register-user-input-email register-user-input" name="email" formControlName="email" placeholder="Your Email Address"
+                        autocomplete="off">
+                      <div *ngIf="signUpForm.get('email').errors && signUpForm.get('email').touched">
+                        <span class="register-error-icon">!</span>
+                        <p class="register-error-message">{{'Please enter a valid email id'}}</p>
+                      </div>
+                    </div>
+
+                    <div class="register-input-item">
+                      <input type="password" class="register-user-input-password register-user-input" name="password" formControlName="password"
+                        placeholder="Choose Password" autocomplete="off">
+                      <div *ngIf="signUpForm.get('password').errors && signUpForm.get('password').touched">
+                        <span class="register-error-icon">!</span>
+                        <p class="register-error-message">{{'Password must be at least 6 characters'}}</p>
+                      </div>
+                    </div>
+
+                    <div class="register-input-item">
+                      <input type="password" class="register-user-input-password register-user-input" name="password_confirmation" formControlName="password_confirmation"
+                        placeholder="Confirm Password" autocomplete="off">
+                      <div *ngIf="(signUpForm.get('password_confirmation').errors || signUpForm.hasError('mismatchedPasswords')) && signUpForm.get('password_confirmation').touched">
+                        <span class="register-error-icon">!</span>
+                        <p class="register-error-message">{{ 'Password must match'}}</p>
+                      </div>
+                    </div>
+
+                    <div class="register-input-item">
+                      <input type="number" class="register-user-input-mobile register-user-input" name="mobile" formControlName="phoneNumber" placeholder="Mobile Number (For order status updates)" autocomplete="off">
+                      <div *ngIf="signUpForm.get('phoneNumber').errors && signUpForm.get('phoneNumber').touched">
+                        <span class="register-error-icon">!</span>
+                        <p class="register-error-message">{{'Please enter a valid mobile number (10 digits)'}}</p>
+                      </div>
+                    </div>
+
+                    <div class="register-input-item">
+                      <input type="text" class="register-user-input-email register-user-input" name="first name" formControlName="firstName"
+                        placeholder="firstName (For order status updates)">
+                      <div *ngIf="signUpForm.get('firstName').errors && signUpForm.get('firstName').touched">
+                        <span class="register-error-icon">!</span>
+                        <p class="register-error-message">{{'Please enter a valid firstName'}}</p>
+                      </div>
+                    </div>
+
+                    <div class="register-input-item">
+                      <input type="text" class="register-user-input-email register-user-input" name="lasr name" formControlName="lastName" placeholder="lastName (For order status updates)" autocomplete="off">
+                      <div *ngIf="signUpForm.get('lastName').errors && signUpForm.get('lastName').touched">
+                        <span class="register-error-icon">!</span>
+                        <p class="register-error-message">{{'Please enter a valid lastName'}}</p>
+                      </div>
+                    </div>
+
+                    <div class="register-input-item">
+                      <input type="text" class="register-user-input-email register-user-input" name="dateOfBirth" formControlName="dateOfBirth"
+                        placeholder="dateOfBirth" autocomplete="off">
+                      <div *ngIf="signUpForm.get('dateOfBirth').errors && signUpForm.get('dateOfBirth').touched">
+                        <span class="register-error-icon">!</span>
+                        <p class="register-error-message">{{'Please enter a valid dateOfBirth id'}}</p>
+                      </div>
+                    </div>
+
+
+                  </fieldset>
+                  <fieldset class="register-register-button-container">
+                    <button class="btn btn-danger register-register-button">REGISTER</button>
+                  </fieldset>
+                </form>
+                <div class="register-link-container">
+                  <small>
+                    <div class="register-login-link">
+                      <span class="register-info-text">Already have an account?</span>
+                      <a class="register-create-account-link register-link text-danger" [routerLink]="['/auth','login']">Login!</a>
+                    </div>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <app-footer></app-footer>
+
+  </section>
+</div>
