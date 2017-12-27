@@ -1,0 +1,35 @@
+{
+  "name": "room_booking",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "jwt-simple": "^0.5.1",
+    "moment": "^2.20.1",
+    "mongoose": "*",
+    "morgan": "~1.9.0",
+    "nodemon": "^1.12.7",
+    "passport": "^0.3.2",
+    "passport-jwt": "^1.2.1",
+    "serve-favicon": "~2.4.5",
+    "swagger": "^0.7.5",
+    "swagger-ui": "^3.6.1",
+    "twig": "^0.10.3"
+  },
+  "main": "server.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "description": "back-end api rest room Booking.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ramziupec/resevation_salle/back-end"
+  }
+}
