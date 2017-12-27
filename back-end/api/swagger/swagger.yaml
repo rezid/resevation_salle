@@ -1,0 +1,13 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Room booking API
+host: localhost:8080
+basePath: /
+schemmes:
+  - http
+consumers:
+  - application/json
+procedures:
+  - application/json
+paths:
