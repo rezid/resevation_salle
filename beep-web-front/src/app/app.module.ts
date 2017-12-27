@@ -16,12 +16,23 @@ import { HeaderComponent } from './layout/header/header.component';
 import { LoginFormComponent } from './layout/header/login-form/login-form.component';
 import { RegistredFormComponent } from './layout/header/registred-form/registred-form.component';
 import { RegisterFormComponent } from './auth/component/register-form/register-form.component';
+import { LoginComponent } from './auth/component/login/login.component';
+import { SignUpComponent } from './auth/component/sign-up/sign-up.component';
+
 import { routes } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { RoomListComponent } from './home/room-list/room-list.component';
+import { RoomListComponent } from './home/content/room-list/room-list.component';
 import { RoomComponent } from './room/room.component';
 import { CalendarComponent } from './room/calendar/calendar.component';
+import { ProfileDropdownComponent } from './layout/header/profile-dropdown/profile-dropdown.component';
+import { ContentHeaderComponent } from './home/content/content-header/content-header.component';
+import { CustomizeComponent } from './home/content/customize/customize.component';
+import { FilterSummaryComponent } from './home/content/filter-summary/filter-summary.component';
+import { TaxonsComponent } from './home/sidebar/taxons/taxons.component';
+import { ContentComponent } from './home/content/content.component';
+import { RoomListItemComponent } from './home/content/room-list/room-list-item/room-list-item.component';
+import { BreadcrumbComponent } from './home/breadcrumb/components/breadcrumb/breadcrumb.component';
 
 
 @NgModule({
@@ -31,11 +42,24 @@ import { CalendarComponent } from './room/calendar/calendar.component';
     LoginFormComponent,
     RegistredFormComponent,
     RegisterFormComponent,
+
     HomeComponent,
+    ContentComponent,
+    TaxonsComponent,
+    RoomListComponent,
+    RoomListItemComponent,
+    FilterSummaryComponent,
+    CustomizeComponent,
+    ContentHeaderComponent,
+    BreadcrumbComponent,
+
     FooterComponent,
     RoomListComponent,
     RoomComponent,
-    CalendarComponent
+    CalendarComponent,
+    ProfileDropdownComponent,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+/*import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { LoginResponse } from '../../core/models/login-response/login-response';
 import { AuthService } from '../../core/services/auth-service/auth.service';
@@ -46,4 +46,29 @@ export class HeaderComponent implements OnInit {
 
   }
 
+}
+*/
+
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../core/services/auth-service/auth.service';
+
+
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
+})
+export class HeaderComponent implements OnInit {
+  isAuthenticated = false;
+
+  constructor(
+    private auth: AuthService,
+  ) {
+  }
+
+  ngOnInit() {
+    this.auth.getAuthenticatedUser().subscribe(user =>
+      user ? this.isAuthenticated = true : this.isAuthenticated = false);
+  }
 }

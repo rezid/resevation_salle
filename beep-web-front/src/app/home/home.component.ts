@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../core/services/data-service/data.service';
 import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Room } from '../core/models/room/room';
+import { ROOM_LIST } from '../core/mocks/room.mocks';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +9,14 @@ import { Room } from '../core/models/room/room';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  rooms$: Observable<Room[]>;
 
-  room_list: Observable<Room[]>;
 
-  constructor(
-    private data: DataService,
-  ) { }
-
-  ngOnInit() {
-    this.room_list = this.data.getAllRooms(); // for now, the list of room in home is the list of all rooms
+  constructor() {
+    // Get all rooms for the room list component
+    this.rooms$ = Observable.of(ROOM_LIST);
   }
+
+  ngOnInit() { }
 
 }

@@ -1,0 +1,36 @@
+<ul class="nav navbar-nav navbar-right">
+
+  <li class="dropdown" *ngIf="!isAuthenticated">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" >
+        <li><a [routerLink]="['signup']">Sign Up</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a [routerLink]="['login']">Login</a></li>
+      </ul>
+  </li>
+
+  <li class="dropdown" *ngIf="isAuthenticated">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+          <li><a routerLink="/user">My Profile</a></li>
+          <li><a routerLink="/user/orders">My Orders</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a routerLink="/user/addresses">Saved Addresses</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Edit Profile</a></li>
+          <li><a (click)="logout()">Logout</a></li>
+        </ul>
+    </li>
+
+  <li class="cart" [routerLink]="['checkout','cart']">
+    <a>
+      <i class="fa fa-bell" aria-hidden="true"></i>
+      <span class="badge badge-danger">0</span></a>
+  </li>
+</ul>
