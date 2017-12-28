@@ -10,7 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AuthService } from './core/services/auth.service';
-import { DataService } from './core/services/data-service/data.service';
+import { RoomService } from './core/services/room.service';
+// import { DataService } from './core/services/data-service/data.service';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { HeaderComponent } from './layout/header/header.component';
 
@@ -22,8 +23,7 @@ import { routes } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { RoomListComponent } from './home/content/room-list/room-list.component';
-import { RoomComponent } from './room/room.component';
-import { CalendarComponent } from './room/calendar/calendar.component';
+import { CalendarComponent } from './room/room-detail-page/calendar/calendar.component';
 import { ProfileDropdownComponent } from './layout/header/profile-dropdown/profile-dropdown.component';
 import { ContentHeaderComponent } from './home/content/content-header/content-header.component';
 import { CustomizeComponent } from './home/content/customize/customize.component';
@@ -35,6 +35,11 @@ import { BreadcrumbComponent } from './home/breadcrumb/components/breadcrumb/bre
 import { HttpService } from './core/services/http';
 import { Http, HttpModule, XHRBackend, RequestOptions } from '@angular/http';
 import { EventService } from './core/services/event.service';
+import { RoomDetailPageComponent } from './room/room-detail-page/room-detail-page.component';
+import { RoomPriceInfoComponent } from './room/room-detail-page/room-price-info/room-price-info.component';
+import { RoomImagesComponent } from './room/room-detail-page/room-images/room-images.component';
+import { RoomDetailsComponent } from './room/room-detail-page/room-details/room-details.component';
+import { RoomDescriptionComponent } from './room/room-detail-page/room-description/room-description.component';
 
 
 export function httpInterceptor(
@@ -61,7 +66,14 @@ export function httpInterceptor(
 
     FooterComponent,
     RoomListComponent,
-    RoomComponent,
+
+    RoomDetailPageComponent,
+    RoomPriceInfoComponent,
+    RoomImagesComponent,
+    RoomDetailsComponent,
+    RoomDescriptionComponent,
+
+
     CalendarComponent,
     ProfileDropdownComponent,
     LoginComponent,
@@ -85,7 +97,12 @@ export function httpInterceptor(
       useFactory: httpInterceptor,
       deps: [ XHRBackend, RequestOptions]
     },
-    DataService,
+    RoomService,
+    {
+      provide: HttpService,
+      useFactory: httpInterceptor,
+      deps: [ XHRBackend, RequestOptions]
+    },
     EventService,
 
   ],

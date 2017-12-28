@@ -1,13 +1,13 @@
 <div class="row-base" style="display: -webkit-flex">
   <section>
     <ul class="results-base">
-      <p *ngIf="rooms.length === 0">Aucun résultat</p>
+      <p *ngIf="rooms">Aucun résultat</p>
       <li *ngFor="let room of rooms" class="product-base" [style.margin]="getMargin()" itemscope itemtype="https://schema.org/Product">
         <div class="product-thumbShim"></div>
         <a itemprop="url">
-          <img itemprop="image" class="product-thumb" alt="{{room.nameName}}" src="assets/imgs/room.jpg">
+          <img itemprop="image" class="product-thumb" alt="{{room.name}}" src="assets/imgs/room.jpg">
           <div class="product-productMetaInfo">
-            <div itemprop="name" class="product-brand">{{ room.nameName }}</div>
+            <div itemprop="name" class="product-brand">{{ room.name }}</div>
             <h2 class="product-product">{{ room.description }}</h2>
             <div itemprop="offers" itemscope itemtype="https://schema.org/Offer" class="product-price">
               <span>

@@ -94,8 +94,6 @@ export class AuthService {
   }
 
 
-
-
   private setTokenInLocalStorage(uid: string): void {
     localStorage.setItem('uid', uid);
   }

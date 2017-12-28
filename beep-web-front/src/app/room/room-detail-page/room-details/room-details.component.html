@@ -1,0 +1,19 @@
+<div itemscope itemtype="https://schema.org/Room" *ngIf="room != null" class="row padding-top">
+
+  <app-image-container class="col-md-6">
+  </app-image-container>
+
+  <div class="col-md-6">
+
+    <app-room-price-info [room]="room" class="row">
+    </app-room-price-info>
+
+    <div>
+      <button (click)="addToCart()" class="pdp-add-to-bag pdp-button">RESERVER</button>
+    </div>
+
+    <app-room-description [description]="room.description" class="row">
+    </app-room-description>
+  </div>
+
+</div>

@@ -44,18 +44,21 @@ export class HttpService extends Http {
 
   get(url: string, options?: RequestOptionsArgs): Observable<any> {
 
-    console.log(this.getFullUrl(url));
+    console.log(`GET ${this.getFullUrl(url)}`);
     console.log(this.requestOptions(options));
 
     this.requestInterceptor();
     return super.get(this.getFullUrl(url), this.requestOptions(options))
       .catch(this.onCatch.bind(this))
       .do((res: Response) => {
+        console.log(res);
         this.onSubscribeSuccess(res);
       }, (error: any) => {
+        console.log(error);
         this.onSubscribeError(error);
       })
       .finally(() => {
+        console.log('sdgdfqfh');
         this.onFinally();
       });
   }
@@ -66,7 +69,7 @@ export class HttpService extends Http {
 
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
 
-    console.log(this.getFullUrl(url));
+    console.log(`POST ${this.getFullUrl(url)}`);
     console.log(body);
     console.log(this.requestOptions(options));
 

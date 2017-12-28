@@ -11,7 +11,7 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import { Reservation } from '../../core/models/reservation/reservation';
+import { Reservation } from '../../../core/models/reservation/reservation';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
