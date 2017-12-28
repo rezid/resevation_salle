@@ -8,13 +8,16 @@ font-family: "Whitney";
 src: url("assets/WhitneyHTF-Book.woff") format("woff")
 }
 
+// angular calandar
+@import url('../node_modules/angular-calendar/css/angular-calendar.css');
+
 /*bootstrap fonts*/
 $icon-font-path: "../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 @import "app/shared/scss/themes";
 @import "app/shared/scss/custom_bootstrap";
 
 @import url('../node_modules/font-awesome/css/font-awesome.min.css');
-@import url('../node_modules/angular-calendar/css/angular-calendar.css');
+
 
 body {
 font-size: 15px;

@@ -1,4 +1,7 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import {
+  Component, OnInit, OnDestroy,
+  Input, Output, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef
+} from '@angular/core';
 import { CalendarEvent, CalendarEventTimesChangedEvent, CalendarMonthViewDay } from 'angular-calendar';
 import { Subject } from 'rxjs/Subject';
 import {
@@ -11,9 +14,18 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import { Reservation } from '../../../core/models/reservation/reservation';
+import { Reservation } from '../../core/models/reservation/reservation';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+
+// adding rx operators
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/finally';
+import 'rxjs/add/observable/of';
 
 const colors: any = {
   red: {
@@ -43,6 +55,8 @@ export class CalendarComponent implements OnInit, OnDestroy {
   @Input() reservationList$: Observable<Reservation[]>;
   @Output() dataClickedEvent: EventEmitter<Date>;
 
+
+
   observer: Subscription;
 
   viewDate: Date = new Date();
@@ -54,20 +68,27 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   view = 'month';
 
-  constructor() {
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {
     this.dataClickedEvent = new EventEmitter<Date>();
-   }
+  }
 
   ngOnInit() {
     this.activeDayIsOpen = false;
     this.observer = this.reservationList$.subscribe(reservation_list => {
       reservation_list.map(reservation => {
+
         this.events.push({
-          start: reservation.startDate,
-          end: reservation.endDate,
+          start: new Date(reservation.start_date),
+          end: new Date(reservation.end_date),
           title: 'Deja reservé pour cette date',
           color: colors.blue,
         });
+
+        this.refresh.next();
+
+        // this.changeDetectorRef.detectChanges();
       });
     });
   }
@@ -107,7 +128,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   }
 
   getMonth(monthNumber) { // 1 = January
-    const monthNames = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'May', 'Join',
+    const monthNames = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'May', 'Juin',
       'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
     return monthNames[monthNumber];
   }

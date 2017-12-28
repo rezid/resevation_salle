@@ -9,7 +9,7 @@
     </app-room-price-info>
 
     <div>
-      <button (click)="addToCart()" class="pdp-add-to-bag pdp-button">RESERVER</button>
+      <button [routerLink]="['/reservation/', room._id]" class="pdp-add-to-bag pdp-button">RESERVER</button>
     </div>
 
     <app-room-description [description]="room.description" class="row">

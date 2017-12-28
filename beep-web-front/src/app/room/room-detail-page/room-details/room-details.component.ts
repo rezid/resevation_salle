@@ -15,9 +15,4 @@ export class RoomDetailsComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-  addToCart(room: Room) {
-
-  }
 }
