@@ -1,7 +1,5 @@
 export interface Reservation {
-    startDate: Date;
-    endDate: Date;
-    idRoomer: string;
-    idRoom: string;
-    reservationDate: Date;
+    start_date: Date;
+    end_date: Date;
+    id_room: string;
 }

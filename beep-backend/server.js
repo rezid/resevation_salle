@@ -28,8 +28,6 @@ app.use(passport.initialize());
 
 //  Route (GET http://localhost:3000)
 app.get('/', function (req, res) {
-
-
     res.send('Hello! The API is at http://localhost:' + port + '/api');
 });
 
@@ -173,7 +171,6 @@ apiRoutes.post('/authenticate', [
 // list of all roooms  (GET http://localhost:8080/api/rooms)
 apiRoutes.get('/rooms', function (req, res) {
 
-    console.log('sdffddddddddddddddddddddddddddd');
     // Access-Control-Allow-Origin' header is required.
     res.header('Access-Control-Allow-Origin', '*');
 
@@ -256,6 +253,75 @@ apiRoutes.get('/rooms/:id', [
 
 });
 
+// add room reservation (POST http://localhost:8080/api/reservations)
+apiRoutes.post('/reservations', [
+    check('id').isMongoId()
+], function (req, res) {
+
+    // Access-Control-Allow-Origin' header is required.
+    res.header('Access-Control-Allow-Origin', '*');
+
+    if (!req.body.id_room || !req.body.start_date || !req.body.end_date) {
+        return res.json({
+            error: true,
+            message: 'id_room, start_date and end_date must be sets'
+        });
+    }
+
+    // validator.js check
+    if (!validator.isMongoId(`${req.body.id_room}`))
+        return res.send({
+            error: true,
+            message: 'id_room not a valide mongodb id.'
+        });;
+
+    // create new reservation
+    reservation = new Reservation({
+        id_room: req.body.id_room,
+        start_date: new Date(req.body.start_date),
+        end_date: new Date(req.body.end_date),
+    });
+
+    
+    // save the reservation
+    reservation.save(function (err) {
+        if (err) {
+            return res.json({
+                error: true,
+                message: err.message
+            });
+        }
+        res.json({
+            error: false,
+        });
+    });
+});
+
+// Get all reservation for a room by id_room (GET http://localhost:8080/api/reservations:id_room)
+apiRoutes.get('/reservations/:id_room', [
+    check('id').isMongoId()
+], function (req, res) {
+
+    // Access-Control-Allow-Origin' header is required.
+    res.header('Access-Control-Allow-Origin', '*');
+
+    // validator.js check
+    if (!validator.isMongoId(`${req.params.id_room}`))
+        return res.send({ count: 0, reservations: [] });;
+
+    // else
+    Reservation.find({ id_room: req.params.id_room }, function (err, reservations) {
+        if (err) throw err;
+        if (!reservations) {
+            return res.send({ count: 0, reservations: [] });
+
+        } else {
+            return res.send({ count: reservations.length, reservations: reservations });
+        }
+    });
+
+});
+
 
 //---------------------------------------------------------------------------------------------------------
 
@@ -292,57 +358,7 @@ apiRoutes.get('/Rooms/room/roomDispo', function (req, res) {
     });
 
 });
-apiRoutes.post('/Rooms/room/reservation', function (req, res) {
-    var idUser = req.param('iduser', 'not found');
-    var idRoom = req.param('idroom', 'not found');
-    var startDate = new Date(req.body.startDate);
-    var endDate = new Date(req.body.endDate);
 
-    Reservation.findOne({ idRoom: idRoom }, function (err, room) {
-        if (err) throw err;
-        if (room) {
-            console.log('salle deja reserve !! la reservation termine le  : ' + room.endDate.getDate());
-
-            if (
-                startDate < room.endDate) {
-                res.send({ success: false, msg: 'room is already reserved ' });
-            }
-            else {
-                var newReservation = new Reservation({
-                    idRoomer: idUser,
-                    idRoom: idRoom,
-                    startDate: new Date(req.body.startDate),
-                    endDate: new Date(req.body.endDate)
-
-                });
-                // save the reservation
-                newReservation.save(function (err) {
-                    if (err) {
-                        return res.json({ success: false, msg: ' ERROR !!!.', err: err.message });
-                    }
-                    res.json({ success: true, msg: 'Successful reserved new room.' });
-                });
-            }
-        } else {
-            var newReservation = new Reservation({
-                idRoomer: idUser,
-                idRoom: idRoom,
-                startDate: new Date(req.body.startDate),
-                endDate: new Date(req.body.endDate),
-
-            });
-            // save the reservation
-            newReservation.save(function (err) {
-                if (err) {
-                    return res.json({ success: false, msg: ' ERROR !!!.', err: err.message });
-                }
-                res.json({ success: true, msg: 'Successful reserved new room.' });
-            });
-        }
-    });
-
-
-});
 
 // recherche salle
 apiRoutes.post('/Rooms/room/research', function (req, res) {

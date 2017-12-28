@@ -6,29 +6,20 @@ var Schema = mongoose.Schema;
 
 // set up a mongoose model
 var ReservationSchema = new Schema({
-    idRoomer: {
-        type: String,
-        required: true
-    },
-    idRoom: {
+    id_room: {
         type: String,
         required: true
     },
 
-    startDate: {
+    start_date: {
         type: Date,
-        required: false
+        required: true
     },
-    endDate: {
+    
+    end_date: {
         type: Date,
-        required: false
+        required: true
     },
-    reservationDate: {
-        type: Date,
-        default:Date.now()
-
-    }
-
 });
 
 
