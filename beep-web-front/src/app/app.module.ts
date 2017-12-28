@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CalendarModule } from 'angular-calendar';
@@ -9,13 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
-import { AuthService } from './core/services/auth-service/auth.service';
+import { AuthService } from './core/services/auth.service';
 import { DataService } from './core/services/data-service/data.service';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { HeaderComponent } from './layout/header/header.component';
-import { LoginFormComponent } from './layout/header/login-form/login-form.component';
-import { RegistredFormComponent } from './layout/header/registred-form/registred-form.component';
-import { RegisterFormComponent } from './auth/component/register-form/register-form.component';
+
+
 import { LoginComponent } from './auth/component/login/login.component';
 import { SignUpComponent } from './auth/component/sign-up/sign-up.component';
 
@@ -33,15 +32,21 @@ import { TaxonsComponent } from './home/sidebar/taxons/taxons.component';
 import { ContentComponent } from './home/content/content.component';
 import { RoomListItemComponent } from './home/content/room-list/room-list-item/room-list-item.component';
 import { BreadcrumbComponent } from './home/breadcrumb/components/breadcrumb/breadcrumb.component';
+import { HttpService } from './core/services/http';
+import { Http, HttpModule, XHRBackend, RequestOptions } from '@angular/http';
 
+
+export function httpInterceptor(
+  backend: XHRBackend,
+  defaultOptions: RequestOptions,
+) {
+  return new HttpService(backend, defaultOptions);
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginFormComponent,
-    RegistredFormComponent,
-    RegisterFormComponent,
 
     HomeComponent,
     ContentComponent,
@@ -65,6 +70,7 @@ import { BreadcrumbComponent } from './home/breadcrumb/components/breadcrumb/bre
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpModule,
     RouterModule.forRoot(routes),
     CalendarModule.forRoot(),
     BrowserAnimationsModule,
@@ -73,7 +79,13 @@ import { BreadcrumbComponent } from './home/breadcrumb/components/breadcrumb/bre
   ],
   providers: [
     AuthService,
-    DataService
+    {
+      provide: HttpService,
+      useFactory: httpInterceptor,
+      deps: [ XHRBackend, RequestOptions]
+    },
+    DataService,
+
   ],
   bootstrap: [AppComponent]
 })

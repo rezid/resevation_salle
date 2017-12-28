@@ -1,10 +1,10 @@
 export interface LoginResponse {
-    result?: {
-        email?: string;
-        uid?: string; // userId
+    success?: {
+        email: string;
+        uid: string;
     };
     error?: {
-        code?: string;
-        message?: string;
+        code: string;
+        message: string;
     };
 }

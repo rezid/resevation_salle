@@ -71,42 +71,19 @@
   border-top: 1px solid #d5d6d9;
 }
 
+.register-user-input-name {
+  border-top: 1px solid #d5d6d9;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 .register-user-input-mobile {
   border-top: 1px solid #d5d6d9;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.register-gender {
-  position: relative;
-  border: 0;
-  font-size: 13px;
-  color: #696e79;
-  text-align: left;
-  padding: 15px;
-  margin: 0;
-  border-top: 1px solid #d5d6d9;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
 
-.register-gender {
-  position: relative;
-  border: 0;
-  font-size: 13px;
-  color: #696e79;
-  text-align: left;
-  padding: 15px;
-  margin: 0;
-  border-top: 1px solid #d5d6d9;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.register-gender-title {
-  display: inline;
-  font-weight: 500;
-}
 
 legend {
   box-sizing: border-box;
@@ -121,20 +98,6 @@ legend {
   border: none;
 }
 
-.register-gender-radio {
-  margin-left: 15px;
-  margin-right: 5px;
-}
-
-[type=checkbox], [type=radio] {
-  box-sizing: border-box;
-  padding: 0;
-}
-
-.register-gender-label {
-  cursor: pointer;
-  font-weight: 500;
-}
 
 fieldset {
   display: block;
@@ -259,6 +222,7 @@ button, input, select, textarea {
   background: url(http://res.cloudinary.com/mally/image/upload/v1489480940/148948096411965_w5wbjb.png) no-repeat 0 0;
   background-size: 159px 48px;
   display: inline-block;
+  
 }
 
 .register-fb-logo {

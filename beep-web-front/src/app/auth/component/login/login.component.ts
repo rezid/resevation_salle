@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../../core/services/auth-service/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { Account } from '../../../core/models/account/account';
 
 @Component({
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    const values = this.signInForm.value;
+    /*const values = this.signInForm.value;
     const keys = Object.keys(values);
     const account = {email: 'test@test.test', password: 'testtest'} as Account;
 
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           ctrl.markAsTouched();
         }
       });
-    }
+    }*/
   }
 
   private pushErrorFor(ctrl_name: string, msg: string) {
@@ -70,11 +70,11 @@ export class LoginComponent implements OnInit {
   }
 
   redirectIfUserLoggedIn() {
-    this.authService.getAuthenticatedUser().subscribe(
+   /* this.authService.getAuthenticatedUser().subscribe(
       data => {
         if (data) { this.router.navigate([this.returnUrl]); }
       }
-    );
+    );*/
   }
 
 

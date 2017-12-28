@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
 
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../core/services/auth-service/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 
 
 @Component({
@@ -60,15 +60,13 @@ import { AuthService } from '../../core/services/auth-service/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isAuthenticated = false;
 
   constructor(
-    private auth: AuthService,
   ) {
   }
 
   ngOnInit() {
-    this.auth.getAuthenticatedUser().subscribe(user =>
-      user ? this.isAuthenticated = true : this.isAuthenticated = false);
+    /*this.auth.getAuthenticatedUser().subscribe(user =>
+      user ? this.isAuthenticated = true : this.isAuthenticated = false);*/
   }
 }

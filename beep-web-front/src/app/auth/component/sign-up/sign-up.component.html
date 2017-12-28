@@ -3,40 +3,60 @@
     <div class="col-md-5 col-centered">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Signup to {{title}}</h3>
+          <h3 class="panel-title">Inscription</h3>
         </div>
         <div id="existing-customer" class="panel-body" data-hook="login">
           <div class="register-third-party-register">
-            <p class="register-button-info-text register-info-text">EASILY USING</p>
+            <p class="register-button-info-text register-info-text">FACILE AVEC</p>
             <div class="register-button-container">
               <button class="register-facebook register-button coming-soon">
                 <span class="register-fb-logo register-sprite"></span>
                 FACEBOOK
               </button>
-              <button class="register-google register-button coming-soon" id="gPlusLogin"><span class="register-gplus-logo register-sprite"></span>
-                  GOOGLE
-                </button>
+              <button class="register-google register-button coming-soon" id="gPlusLogin">
+                <span class="register-gplus-logo register-sprite"></span>
+                GOOGLE
+              </button>
             </div>
           </div>
-          <p class="register-button-info-text register-info-text">- OR USING EMAIL -</p>
+          <p class="register-button-info-text register-info-text">- OU AVEC UN EMAIL -</p>
           <form class="register-register-form" novalidate="" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
             <fieldset class="register-input-container">
 
               <div class="register-input-item">
-                <input type="email" class="register-user-input-email register-user-input" name="email" formControlName="email" placeholder="Your Email Address"
+                <input type="email" class="register-user-input-email register-user-input" name="email" formControlName="email" placeholder="Email"
                   autocomplete="off">
                 <div *ngIf="signUpForm.get('email').errors && signUpForm.get('email').touched">
                   <span class="register-error-icon">!</span>
-                  <p class="register-error-message">Please enter a valid email id</p>
+                  <p class="register-error-message">{{signUpForm.get('email').errors.msg || 'Adresse email invalide.'}}</p>
                 </div>
               </div>
+
+              <div class="register-input-item">
+                <input type="text" class="register-user-input-name register-user-input" name="first_name" formControlName="first_name" placeholder="Nom"
+                  autocomplete="off">
+                <div *ngIf="signUpForm.get('first_name').errors && signUpForm.get('first_name').touched">
+                  <span class="register-error-icon">!</span>
+                  <p class="register-error-message">Ce champ est obligatoire.</p>
+                </div>
+              </div>
+
+              <div class="register-input-item">
+                <input type="text" class="register-user-input-name register-user-input" name="last_name" formControlName="last_name" placeholder="Prénom"
+                  autocomplete="off">
+                <div *ngIf="signUpForm.get('last_name').errors && signUpForm.get('last_name').touched">
+                  <span class="register-error-icon">!</span>
+                  <p class="register-error-message">Ce champ est obligatoire.</p>
+                </div>
+              </div>
+
 
               <div class="register-input-item">
                 <input type="password" class="register-user-input-password register-user-input" name="password" formControlName="password"
                   placeholder="Choose Password" autocomplete="off">
                 <div *ngIf="signUpForm.get('password').errors && signUpForm.get('password').touched">
                   <span class="register-error-icon">!</span>
-                  <p class="register-error-message">Password must be at least 6 characters</p>
+                  <p class="register-error-message">Au moins 6 caractères.</p>
                 </div>
               </div>
 
@@ -45,43 +65,28 @@
                   placeholder="Confirm Password" autocomplete="off">
                 <div *ngIf="(signUpForm.get('password_confirmation').errors || signUpForm.hasError('mismatchedPasswords')) && signUpForm.get('password_confirmation').touched">
                   <span class="register-error-icon">!</span>
-                  <p class="register-error-message">{{ 'Password must match'}}</p>
+                  <p class="register-error-message">{{'Le mot de passe doit correspondre.'}}</p>
                 </div>
               </div>
 
               <div class="register-input-item">
-                <input type="number" class="register-user-input-mobile register-user-input" name="mobile"
-                  formControlName="mobile" placeholder="Mobile Number (For order status updates)">
+                <input type="text" class="register-user-input-mobile register-user-input" name="mobile" formControlName="mobile" placeholder="Mobile">
                 <div *ngIf="signUpForm.get('mobile').errors && signUpForm.get('mobile').touched">
                   <span class="register-error-icon">!</span>
-                  <p class="register-error-message">Please enter a valid mobile number (10 digits)</p>
+                  <p class="register-error-message">Obligatoire, sur 10 nombres.</p>
                 </div>
               </div>
 
-              <fieldset data-type="horizontal" class="register-gender">
-                <legend class="register-gender-title">I'm a</legend>
-
-                <input type="radio" class="register-gender-radio" id="male" name="gender" value="M" formControlName="gender">
-                <label class="register-gender-label" for="male">Male</label>
-
-                <input type="radio" class="register-gender-radio" id="female" name="gender" value="F" formControlName="gender">
-                <label class="register-gender-label" for="female">Female</label>
-
-                <div *ngIf="signUpForm.get('gender').errors && signUpForm.get('gender').touched">
-                  <span class="register-gender-error-icon register-error-icon">!</span>
-                  <p class="register-gender-error-message register-error-message">Please select your gender</p>
-                </div>
-              </fieldset>
             </fieldset>
             <fieldset class="register-register-button-container">
-              <button class="btn btn-danger register-register-button">REGISTER</button>
+              <button class="btn btn-danger register-register-button">Créer un compte</button>
             </fieldset>
           </form>
           <div class="register-link-container">
             <small>
               <div class="register-login-link">
-                <span class="register-info-text">Already have an account?</span>
-                <a class="register-create-account-link register-link text-danger" [routerLink]="['/auth','login']">Login!</a>
+                <span class="register-info-text">Déjà inscrit sur Beep ?</span>
+                <a class="register-create-account-link register-link text-danger" [routerLink]="['/login']">Connexion!</a>
               </div>
             </small>
           </div>
