@@ -5,6 +5,18 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { Account } from '../../../core/models/account/account';
 
+// adding rx operators
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/finally';
+import 'rxjs/add/observable/of';
+import { Subscription } from 'rxjs/Subscription';
+import { EventService } from '../../../core/services/event.service';
+import { LoginResponse } from '../../../core/models/login-response/login-response';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,12 +26,14 @@ export class LoginComponent implements OnInit {
   signInForm: FormGroup;
   title = 'Beep';
   returnUrl: string;
+  registerSubs: Subscription;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private eventService: EventService
   ) {
     this.redirectIfUserLoggedIn();
   }
@@ -31,32 +45,34 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    /*const values = this.signInForm.value;
-    const keys = Object.keys(values);
-    const account = {email: 'test@test.test', password: 'testtest'} as Account;
+    const emailWithPassword = this.signInForm.value;
+    const keys = Object.keys(emailWithPassword);
 
     if (this.signInForm.valid) {
-      this.authService.createUserWithEmailAndPassword(account).then(data => {
-        const error = data.error;
-        if (error) {
-          keys.forEach(val => {
-            this.pushErrorFor(val, error.message);
-          });
-        }
-      });
+      this.registerSubs = this.authService.login(emailWithPassword.email, emailWithPassword.password)
+        .subscribe((loginResponse: LoginResponse) => {
+          const error = loginResponse.error;
+          if (error) {
+            this.pushErrorFor('email', 'Identifiant ou mot de passe invalide.');
+          } else {
+            this.eventService.loginEvent();
+            this.redirectIfUserLoggedIn();
+          }
+        });
     } else {
       keys.forEach(val => {
         const ctrl = this.signInForm.controls[val];
         if (!ctrl.valid) {
           this.pushErrorFor(val, null);
           ctrl.markAsTouched();
+
         }
       });
-    }*/
+    }
   }
 
   private pushErrorFor(ctrl_name: string, msg: string) {
-    this.signInForm.controls[ctrl_name].setErrors({'msg': msg});
+    this.signInForm.controls[ctrl_name].setErrors({ 'msg': msg });
   }
 
   initForm() {
@@ -70,11 +86,11 @@ export class LoginComponent implements OnInit {
   }
 
   redirectIfUserLoggedIn() {
-   /* this.authService.getAuthenticatedUser().subscribe(
+    this.authService.authorized().subscribe(
       data => {
-        if (data) { this.router.navigate([this.returnUrl]); }
+        if (data.success) { this.router.navigateByUrl('/'); }
       }
-    );*/
+    );
   }
 
 

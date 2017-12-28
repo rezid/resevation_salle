@@ -53,12 +53,44 @@ export class AuthService {
       });
   }
 
+
+  login(email: string, password: string): Observable<LoginResponse> {
+
+    const emailWithPassword = Object.assign({}, {email: email}, { password: password });
+    console.log(emailWithPassword);
+
+
+    return this.http.post('login', emailWithPassword)
+      .map((response: any) => {
+        const loginResponse: LoginResponse = response.json();
+        console.log(loginResponse);
+
+        if (!loginResponse.error) {
+          // Setting token after login
+          this.setTokenInLocalStorage(loginResponse.success.uid);
+
+        } else {
+          this.http.loading.next({
+            loading: false,
+            hasError: true,
+            hasMsg: 'Please enter valid Credentials'
+          });
+        }
+        return loginResponse;
+      });
+  }
+
+
   authorized(): Observable<any> {
     return this.http.post('authenticate', {})
       .map((res: Response) => {
         console.log(res.json());
         return res.json();
       });
+  }
+
+  logout() {
+    localStorage.removeItem('uid');
   }
 
 

@@ -3,11 +3,11 @@
     <div class="col-md-5 col-centered">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Login to {{title}}</h3>
+          <h3 class="panel-title">Connexion</h3>
         </div>
         <div id="existing-customer" class="panel-body" data-hook="login">
           <div class="login-third-party-login">
-            <p class="login-button-info-text login-info-text">EASILY USING</p>
+            <p class="login-button-info-text login-info-text">FACILE AVEC</p>
             <div class="login-button-container">
               <button class="login-facebook login-button coming-soon">
                 <span class="header-sprite login-fb-logo"></span>
@@ -19,36 +19,36 @@
               </button>
             </div>
           </div>
-          <p class="login-info-text">- OR USING EMAIL -</p>
+          <p class="login-info-text">- OU AVEC UN EMAIL -</p>
           <form class="login-login-form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
             <fieldset class="login-input-container">
               <div class="login-input-item">
-                <input type="email" class="login-user-input-email login-user-input" name="email" placeholder="Your Email Address" formControlName="email"
+                <input type="email" class="login-user-input-email login-user-input" name="email" placeholder="Email" formControlName="email"
                   autocomplete="off">
                 <div *ngIf="signInForm.get('email').errors && signInForm.get('email').touched">
                   <span class="login-error-icon text-danger">!</span>
-                  <p class="login-error-message text-danger">Please enter a valid email id</p>
+                  <p class="login-error-message text-danger">{{signInForm.get('email').errors.msg || 'Ce champ est obligatoire'}}</p>
                 </div>
               </div>
               <div class="login-input-item">
-                <input type="password" class="login-user-input-password login-user-input" name="password" placeholder="Enter Password" formControlName="password"
+                <input type="password" class="login-user-input-password login-user-input" name="password" placeholder="Mot de passe" formControlName="password"
                   autocomplete="off">
                 <div *ngIf="signInForm.get('password').errors && signInForm.get('password').touched">
                   <span class="login-error-icon text-danger">!</span>
-                  <p class="login-error-message text-danger">Password must be at least 6 characters</p>
+                  <p class="login-error-message text-danger">Au moins 6 caractères.</p>
                 </div>
               </div>
             </fieldset>
             <fieldset class="login-login-button-container">
-              <button type="submit" class="btn btn-danger login-login-button">Log in</button>
+              <button type="submit" class="btn btn-danger login-login-button">Se connecter</button>
             </fieldset>
           </form>
           <div class="login-link-container">
             <small>
-              <a class="login-link text-danger" routerLink="/">Recover password</a>
+              <a class="login-link text-danger">mot de passe oublié ?</a>
               <div class="login-right-links">
-                <span class="text-default">New to {{title}}?</span>
-                <a class="login-create-account-link login-link text-danger" [routerLink]="['/auth']">Create Account</a>
+                <span class="text-default">Nouveau ?</span>
+                <a class="login-create-account-link login-link text-danger" [routerLink]="['/signup']">Créez un compte</a>
               </div>
             </small>
           </div>

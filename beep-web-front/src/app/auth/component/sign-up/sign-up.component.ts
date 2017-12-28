@@ -15,6 +15,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/of';
 import { LoginResponse } from '../../../core/models/login-response/login-response';
+import { EventService } from '../../../core/services/event.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -26,15 +27,14 @@ export class SignUpComponent implements OnInit, OnDestroy {
   formSubmit = false;
   registerSubs: Subscription;
   profile = {} as Profile;
-  @Output() loginEvent: EventEmitter<boolean>;
 
   constructor(
+    private eventService: EventService,
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {
     this.redirectIfUserLoggedIn();
-    this.loginEvent = new EventEmitter<boolean>();
   }
 
   ngOnInit() {
@@ -62,8 +62,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
           if (error) {
             this.pushErrorFor('email', 'Adresse Email deja utilisé.');
           } else {
+            this.eventService.loginEvent();
             this.redirectIfUserLoggedIn();
-            this.loginEvent.emit(true);
           }
         });
     } else {

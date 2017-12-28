@@ -34,6 +34,7 @@ import { RoomListItemComponent } from './home/content/room-list/room-list-item/r
 import { BreadcrumbComponent } from './home/breadcrumb/components/breadcrumb/breadcrumb.component';
 import { HttpService } from './core/services/http';
 import { Http, HttpModule, XHRBackend, RequestOptions } from '@angular/http';
+import { EventService } from './core/services/event.service';
 
 
 export function httpInterceptor(
@@ -85,6 +86,7 @@ export function httpInterceptor(
       deps: [ XHRBackend, RequestOptions]
     },
     DataService,
+    EventService,
 
   ],
   bootstrap: [AppComponent]

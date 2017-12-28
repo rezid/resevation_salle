@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
+import { EventService } from '../../../core/services/event.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-profile-dropdown',
@@ -10,25 +12,21 @@ export class ProfileDropdownComponent implements OnInit {
   isAuthenticated = false;
 
   constructor(
-    private authService: AuthService
+    private eventService: EventService,
+    private auth: AuthService
   ) {
-    this.authService.authorized().subscribe(
-      data => {
-        console.log("xxxxxxxxxxxx");
-        if (data.success) { this.isAuthenticated = true; }
-      }
-    );
+
   }
 
   ngOnInit() {
+    this.eventService.authSubject.subscribe(obj => {
+      this.isAuthenticated = obj.isAuth;
+      console.log(`Event: auth = ${obj.isAuth}`);
+    });
   }
 
   logout() {
-    this.isAuthenticated = true;
+    this.auth.logout();
+    this.eventService.logoutEvent();
   }
-
-  login() {
-    this.isAuthenticated = true;
-  }
-
 }
