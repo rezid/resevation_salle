@@ -11,7 +11,7 @@ export class FilterSummaryComponent implements OnInit {
   filters$: Observable<any>;
 
   constructor() {
-    this.filters$ = Observable.of([{ name: 'test1', }, { name: 'tes2', }, { name: 'tes3', }]);
+    this.filters$ = Observable.of([{ name: 'Fête', }]);
   }
 
   ngOnInit() {

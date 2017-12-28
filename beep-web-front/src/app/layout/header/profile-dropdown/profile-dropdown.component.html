@@ -6,9 +6,9 @@
       <span class="caret"></span>
     </a>
     <ul class="dropdown-menu" >
-        <li><a [routerLink]="['signup']">Sign Up</a></li>
+        <li><a [routerLink]="['signup']">Créez un compte</a></li>
         <li role="separator" class="divider"></li>
-        <li><a [routerLink]="['login']">Login</a></li>
+        <li><a [routerLink]="['login']">Connexion</a></li>
       </ul>
   </li>
 
@@ -18,19 +18,19 @@
         <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-          <li><a routerLink="/user">My Profile</a></li>
-          <li><a routerLink="/user/orders">My Orders</a></li>
+          <li><a class="coming-soon">Mon Profile</a></li>
+          <li><a class="coming-soon">Mes Reservation</a></li>
           <li role="separator" class="divider"></li>
-          <li><a routerLink="/user/addresses">Saved Addresses</a></li>
+          <li><a class="coming-soon">Recherches sauvegardées</a></li>
           <li role="separator" class="divider"></li>
-          <li><a href="#">Edit Profile</a></li>
-          <li><a (click)="logout()">Logout</a></li>
+          <li><a class="coming-soon">Mes Favoris</a></li>
+          <li><a (click)="logout()">Déconnexion</a></li>
         </ul>
     </li>
 
-  <li class="cart" [routerLink]="['checkout','cart']">
+  <li class="cart coming-soon" *ngIf="isAuthenticated">
     <a>
       <i class="fa fa-bell" aria-hidden="true"></i>
-      <span class="badge badge-danger">0</span></a>
+      <span class="badge badge-danger">?</span></a>
   </li>
 </ul>

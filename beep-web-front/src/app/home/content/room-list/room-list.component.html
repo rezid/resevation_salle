@@ -1,10 +1,10 @@
 <div class="row-base" style="display: -webkit-flex">
   <section>
     <ul class="results-base">
-      <p *ngIf="rooms.length === 0">No Rooms found for this category</p>
+      <p *ngIf="rooms.length === 0">Aucun résultat</p>
       <li *ngFor="let room of rooms" class="product-base" [style.margin]="getMargin()" itemscope itemtype="https://schema.org/Product">
         <div class="product-thumbShim"></div>
-        <a itemprop="url" [routerLink]="['/room/', room._id]">
+        <a itemprop="url">
           <img itemprop="image" class="product-thumb" alt="{{room.nameName}}" src="assets/imgs/room.jpg">
           <div class="product-productMetaInfo">
             <div itemprop="name" class="product-brand">{{ room.nameName }}</div>
@@ -23,12 +23,15 @@
             <!--<div class="product-sizes">Sizes: S, M, L, XL, XXL</div>-->
           </div>
         </a>
-       
-        
+
+
         <div class="product-actions">
-          <span class="product-actionsButton product-wishlist coming-soon">save</span>
+
+          <span class="product-actionsButton product-wishlist coming-soon">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            Favorie</span>
           <span class="product-actionsButton product-addToBag">
-            <span (click)="addToCart(room)">Add to bag</span>
+            <span (click)="addToCart(room)" [routerLink]="['/room/', room._id]">En savoir plus</span>
           </span>
         </div>
       </li>

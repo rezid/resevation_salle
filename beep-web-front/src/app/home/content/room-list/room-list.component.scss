@@ -14,7 +14,7 @@ ul {
       opacity: 0;
     }
     &.product-base {
-      width: 400px;
+      width: 180px;
       height: 332px;
       text-align: center;
       position: relative;
@@ -32,7 +32,7 @@ ul {
           display: block;
           background-color: transparent;
           opacity: 1;
-          width: 100%;
+          //width: 245%;
           object-fit: contain;
         }
         .product-productMetaInfo {

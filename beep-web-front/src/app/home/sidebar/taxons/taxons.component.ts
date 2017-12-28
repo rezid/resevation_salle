@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } fro
   styleUrls: ['./taxons.component.scss']
 })
 export class TaxonsComponent implements OnInit {
-  taxonomies = [{ name: 'musique' }, { name: 'fete' }, { name: 'mariage' }];
+  taxonomies = [{ name: 'Musique' }, { name: 'Anniversaire' }, { name: 'Mariage' }];
 
 
   constructor(
