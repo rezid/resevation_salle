@@ -38,24 +38,17 @@ export class RoomService {
         });
     }
 
-    addRoom(room: Room): boolean {
-        // Need user be authenthified
-        this.eventService.authSubject.map(object => {
-            if (!object.isAuth) {
-                return false;
-            } else {
-
-                // if authenthified
-                return this.http.post('rooms', room).map((response: Response) => {
-                    console.log(response.json());
-                    return !response.json().error;
-                });
+    addRoom(room: Room): Observable<boolean> {
+        return this.http.post('rooms', room).map((response: Response) => {
+            const success = !response.json().error;
+            if (success) {
+                this.eventService.addRoomEvent();
             }
-
+            return success;
         });
-
-        return false;
     }
+
+
 
     getRoomById(roomid: string): Observable<RoomResponse> {
         return this.http.get(`rooms/${roomid}`).map((response: Response) => {

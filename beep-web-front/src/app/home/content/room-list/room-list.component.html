@@ -1,7 +1,7 @@
 <div class="row-base" style="display: -webkit-flex">
   <section>
     <ul class="results-base">
-      <p *ngIf="rooms">Aucun résultat</p>
+      <p *ngIf="rooms==null">Aucun salle trouvé</p>
       <li *ngFor="let room of rooms" class="product-base" [style.margin]="getMargin()" itemscope itemtype="https://schema.org/Product">
         <div class="product-thumbShim"></div>
         <a itemprop="url">

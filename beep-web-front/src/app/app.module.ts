@@ -42,6 +42,7 @@ import { RoomImagesComponent } from './room/room-detail-page/room-images/room-im
 import { RoomDetailsComponent } from './room/room-detail-page/room-details/room-details.component';
 import { RoomDescriptionComponent } from './room/room-detail-page/room-description/room-description.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { RoomAddPageComponent } from './room/room-add-page/room-add-page.component';
 
 export function httpInterceptor(
   backend: XHRBackend,
@@ -80,7 +81,8 @@ export function httpInterceptor(
 
     ProfileDropdownComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    RoomAddPageComponent
   ],
   imports: [
     BrowserModule,

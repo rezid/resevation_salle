@@ -30,13 +30,11 @@ export class AuthService {
   register(profile: Profile, password: string): Observable<LoginResponse> {
 
     const profileWithPassword = Object.assign({}, profile, { password: password });
-    console.log(profileWithPassword);
 
 
     return this.http.post('signup', profileWithPassword)
       .map((response: any) => {
         const loginResponse: LoginResponse = response.json();
-        console.log(loginResponse);
 
         if (!loginResponse.error) {
           // Setting token after login
@@ -56,14 +54,11 @@ export class AuthService {
 
   login(email: string, password: string): Observable<LoginResponse> {
 
-    const emailWithPassword = Object.assign({}, {email: email}, { password: password });
-    console.log(emailWithPassword);
-
+    const emailWithPassword = Object.assign({}, { email: email }, { password: password });
 
     return this.http.post('login', emailWithPassword)
       .map((response: any) => {
         const loginResponse: LoginResponse = response.json();
-        console.log(loginResponse);
 
         if (!loginResponse.error) {
           // Setting token after login
@@ -81,10 +76,9 @@ export class AuthService {
   }
 
 
-  authorized(): Observable<any> {
-    return this.http.post('authenticate', {})
+  authorized(): Observable<LoginResponse> {
+    return this.http.get('authenticate')
       .map((res: Response) => {
-        console.log(res.json());
         return res.json();
       });
   }

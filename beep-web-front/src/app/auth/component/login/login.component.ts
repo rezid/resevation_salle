@@ -87,8 +87,8 @@ export class LoginComponent implements OnInit {
 
   redirectIfUserLoggedIn() {
     this.authService.authorized().subscribe(
-      data => {
-        if (data.success) { this.router.navigateByUrl('/'); }
+      (loginResponse: LoginResponse) => {
+        if (loginResponse.success) { this.router.navigateByUrl('/'); }
       }
     );
   }

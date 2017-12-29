@@ -144,7 +144,7 @@ apiRoutes.post('/login', function (req, res) {
 });
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
-apiRoutes.post('/authenticate', [
+apiRoutes.get('/authenticate', [
 
     check('id').isMongoId()
 
@@ -153,17 +153,23 @@ apiRoutes.post('/authenticate', [
     // Access-Control-Allow-Origin' header is required.
     res.header('Access-Control-Allow-Origin', '*');
 
+    uid = req.header('uid') ? req.header('uid') : "";
+
+    // uid not present
+    if (uid == "")
+        return res.send({ error: { code: "0x00004", message: 'User not authentified(uid not present).' } });;
+
     // validator.js check
-    if (!validator.isMongoId(req.header('uid')))
-        return res.send({ success: false, msg: 'User not authentified (uid not valid or not found!).' });;
+    if (!validator.isMongoId(uid))
+        return res.send({ error: { code: "0x00004", message: 'User not authentified(uid format error).' } });;
 
     // else
     User.findById(req.header('uid'), function (err, user) {
-        if (err) res.send({ success: false, msg: err.message });
+        if (err) res.send({ error: { code: "0x00004", message: err.message } });
         if (!user) {
-            return res.send({ success: false, msg: 'Authentication failed. User not found.' });
+            return res.send({ error: { code: "0x00004", message: 'User not authentified or compte deleted.' } });
         } else {
-            return res.send({ success: true, });
+            return res.send({ success: { email: user.email, uid: user._id } });
         }
     })
 });
@@ -282,7 +288,7 @@ apiRoutes.post('/reservations', [
         end_date: new Date(req.body.end_date),
     });
 
-    
+
     // save the reservation
     reservation.save(function (err) {
         if (err) {

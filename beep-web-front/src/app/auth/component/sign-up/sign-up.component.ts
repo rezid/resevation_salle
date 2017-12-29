@@ -102,8 +102,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   redirectIfUserLoggedIn() {
     this.authService.authorized().subscribe(
-      data => {
-        if (data.success) { this.router.navigateByUrl('/'); }
+      (loginResponse: LoginResponse) => {
+        if (loginResponse.success) { this.router.navigateByUrl('/'); }
       }
     );
   }

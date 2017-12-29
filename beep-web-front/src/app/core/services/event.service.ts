@@ -12,17 +12,19 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/of';
+import { LoginResponse } from '../models/login-response/login-response';
 
 
 @Injectable()
 export class EventService {
 
     public authSubject = new Subject<{ isAuth: boolean }>();
+    public roomAddedSubject = new Subject();
 
-    constructor(authService: AuthService) {
+    constructor(private authService: AuthService) {
         authService.authorized().subscribe(
-            data => {
-                if (data.success) {
+            (loginResponse: LoginResponse) => {
+                if (loginResponse.success) {
                     this.authSubject.next({ isAuth: true });
                 } else { this.authSubject.next({ isAuth: false }); }
             }
@@ -35,6 +37,11 @@ export class EventService {
 
     logoutEvent() {
         this.authSubject.next({ isAuth: false });
+    }
+
+
+    addRoomEvent() {
+        this.roomAddedSubject.next();
     }
 
 
