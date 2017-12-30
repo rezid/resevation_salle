@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   rooms: Room[];
   roomsSub: Subscription;
+  roomsSearchedSub: Subscription;
+  searchSubs: Subscription;
 
   roomAddedSubjectInscription: Subscription;
 
@@ -31,7 +33,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     // Get all rooms for the room list component each time a new event is here
     this.roomAddedSubjectInscription = this.eventService.roomAddedSubject.subscribe(() => {
       this.roomsSub = this.roomService.getAllRooms().subscribe((roomResponse: RoomResponse) => {
-        console.log('helo');
+        this.rooms = roomResponse.rooms;
+        this.changeDetectorRef.detectChanges();
+      });
+    });
+
+    this.searchSubs = this.eventService.searchEvent.subscribe(search => {
+      this.roomsSearchedSub = this.roomService.getRoomBySearchCriteriaList(search).subscribe((roomResponse: RoomResponse) => {
         this.rooms = roomResponse.rooms;
         this.changeDetectorRef.detectChanges();
       });

@@ -328,6 +328,34 @@ apiRoutes.get('/reservations/:id_room', [
 
 });
 
+// Serach room by postal code (POST http://localhost:8080/rooms/search)
+apiRoutes.post('/rooms/search', function (req, res) {
+
+    // Access-Control-Allow-Origin' header is required.
+    res.header('Access-Control-Allow-Origin', '*');
+
+    if (!req.body.postal_code) {
+        console.log('i am here');
+        Room.find({}, function (err, rooms) {
+            if (err) throw err;
+            if (!rooms) {
+                return res.send({ count: 0, rooms: [] });
+
+            } else {
+                return res.send({ count: rooms.length, rooms: rooms });
+            }
+        });
+    }
+
+    else {
+        Room.find({ postal_code: req.body.postal_code }, function (err, rooms) {
+            if (err) throw err;
+            res.send({ count: rooms.length, rooms: rooms });
+        });
+    }
+});
+
+
 
 //---------------------------------------------------------------------------------------------------------
 
@@ -366,71 +394,6 @@ apiRoutes.get('/Rooms/room/roomDispo', function (req, res) {
 });
 
 
-// recherche salle
-apiRoutes.post('/Rooms/room/research', function (req, res) {
-    if (!req.body.localisation && !req.body.type && !req.body.cap && !req.body.date) {
-        console.log(' pas de param ')
-        return res.json({ success: false, msg: 'veillez remplir au moin un champ .' });
-    }
-
-    else {
-        if (!req.body.type && !req.body.cap && !req.body.date) {
-            Room.find({ localisation: req.body.localisation }, function (err, rooms) {
-                if (err) throw err;
-                res.send(rooms);
-            });
-        } else {
-
-
-            if (!req.body.cap && !req.body.date) {
-                Room.find({ localisation: req.body.localisation, type: req.body.type }, function (err, rooms) {
-                    if (err) throw err;
-                    res.send(rooms);
-                });
-            } else {
-                if (!req.body.date) {
-                    Room.find(
-                        {
-                            localisation: req.body.localisation,
-                            type: req.body.type,
-                            capacite: req.body.cap
-                        }
-                        , function (err, rooms) {
-                            if (err) throw err;
-                            res.send(rooms);
-                        });
-                } else {
-                    Room.find(
-                        {
-                            localisation: req.body.localisation,
-                            type: req.body.type,
-                            capacite: req.body.cap,
-                            /**
-                             *
-                             * to do verification in the table of reservation with date
-                             *
-                             *
-                             */
-                        }
-                        , function (err, rooms) {
-                            if (err) throw err;
-                            res.send(rooms);
-                        });
-                }
-
-            }
-
-        }
-
-
-
-
-
-
-    }
-
-
-});
 
 
 // route to a restricted info (GET http://localhost:8080/api/memberinfo)

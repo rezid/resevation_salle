@@ -18,6 +18,7 @@ import { LoginResponse } from '../models/login-response/login-response';
 import { Room } from '../models/room/room';
 import { RoomResponse } from '../models/room-response/room-response';
 import { EventService } from './event.service';
+import { SearchCriteriaList } from '../models/search-criteria/search-criteria';
 
 
 @Injectable()
@@ -27,9 +28,7 @@ export class RoomService {
     constructor(
         private http: HttpService,
         private eventService: EventService,
-    ) {
-
-    }
+    ) { }
 
     getAllRooms(): Observable<RoomResponse> {
         return this.http.get('rooms').map((response: Response) => {
@@ -44,11 +43,9 @@ export class RoomService {
             if (success) {
                 this.eventService.addRoomEvent();
             }
-            return success;
-        });
+                return success;
+            });
     }
-
-
 
     getRoomById(roomid: string): Observable<RoomResponse> {
         return this.http.get(`rooms/${roomid}`).map((response: Response) => {
@@ -57,5 +54,18 @@ export class RoomService {
         });
     }
 
+    getRoomBySearchCriteriaList(searchCriteriaList: SearchCriteriaList): Observable<RoomResponse> {
+        const temp = {};
+
+        for (const search_criteria of searchCriteriaList.search_criteria_list) {
+            temp[search_criteria.name] = search_criteria.value;
+        }
+
+        return this.http.post(`rooms/search`, temp).map((response: Response) => {
+            console.log(`RoomService::getRoomById() => ${response.json()}`);
+            return response.json();
+        });
+
+    }
 
 }

@@ -15,7 +15,7 @@
                   autocomplete="off">
                 <div *ngIf="signUpForm.get('name').errors && signUpForm.get('name').touched">
                   <span class="register-error-icon">!</span>
-                  <p class="register-error-message">Ce champ est obligatoire.</p>
+                  <p class="register-error-message">{{ signUpForm.get('name').errors.msg || 'Ce champ est obligatoire.' }}</p>
                 </div>
               </div>
 
@@ -83,8 +83,8 @@
               </div>
 
               <div class="register-input-item">
-                <input type="number" class="register-user-input-name register-user-input" name="postal_code" formControlName="postal_code" placeholder="Code postal"
-                  autocomplete="off">
+                <input type="number" class="register-user-input-name register-user-input" name="postal_code" formControlName="postal_code"
+                  placeholder="Code postal" autocomplete="off">
                 <div *ngIf="signUpForm.get('postal_code').errors && signUpForm.get('postal_code').touched">
                   <span class="register-error-icon">!</span>
                   <p class="register-error-message">Ce champ est obligatoire.</p>
@@ -92,7 +92,8 @@
               </div>
 
               <div class="register-input-item">
-                <input type="text" class="register-user-input-description register-user-input" name="description" formControlName="description" placeholder="Description">
+                <input type="text" class="register-user-input-description register-user-input" name="description" formControlName="description"
+                  placeholder="Description">
                 <div *ngIf="signUpForm.get('description').errors && signUpForm.get('description').touched">
                   <span class="register-error-icon">!</span>
                   <p class="register-error-message">Une presentation rapide de la salle.</p>

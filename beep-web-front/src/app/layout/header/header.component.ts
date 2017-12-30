@@ -11,6 +11,8 @@ import { EventService } from '../../core/services/event.service';
 })
 export class HeaderComponent implements OnInit {
 
+  postal_code: string = null;
+
   constructor(
     private eventService: EventService,
   ) {
@@ -21,5 +23,25 @@ export class HeaderComponent implements OnInit {
 
   refresh() {
     this.eventService.addRoomEvent();
+  }
+
+  search() {
+    if (this.postal_code != null) {
+      this.eventService.newSearchEvent({
+        count: 1,
+        search_criteria_list: [
+          {
+            name: 'postal_code',
+            value: this.postal_code,
+          },
+        ],
+      });
+    } else {
+      this.eventService.newSearchEvent({
+        count: 0,
+        search_criteria_list: [],
+      });
+
+    }
   }
 }

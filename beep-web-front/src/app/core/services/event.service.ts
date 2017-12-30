@@ -13,13 +13,14 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/of';
 import { LoginResponse } from '../models/login-response/login-response';
-
+import { SearchCriteriaList } from '../models/search-criteria/search-criteria';
 
 @Injectable()
 export class EventService {
 
     public authSubject = new Subject<{ isAuth: boolean }>();
     public roomAddedSubject = new Subject();
+    public searchEvent = new Subject<SearchCriteriaList>();
 
     constructor(private authService: AuthService) {
         authService.authorized().subscribe(
@@ -39,9 +40,12 @@ export class EventService {
         this.authSubject.next({ isAuth: false });
     }
 
-
     addRoomEvent() {
         this.roomAddedSubject.next();
+    }
+
+    newSearchEvent(searchCriteriaList: SearchCriteriaList) {
+        this.searchEvent.next(searchCriteriaList);
     }
 
 

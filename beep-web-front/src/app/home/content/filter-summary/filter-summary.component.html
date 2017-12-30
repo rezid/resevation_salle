@@ -1,6 +1,6 @@
 <div class="filter-summary">
   <div class="filter">
-    <div *ngFor="let filter of filters$ | async" class="option coming-soon">{{ filter.name }}
+    <div *ngFor="let filter of filters" class="option coming-soon">{{ change_name(filter.name) }}
     </div>
     <!--<div data-filter="brands_filter_facet" data-option="Wills Lifestyle" data-colorhex="" class="option">Wills Lifestyle</div>-->
   </div>
