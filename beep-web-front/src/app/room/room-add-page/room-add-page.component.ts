@@ -40,6 +40,15 @@ export class RoomAddPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private roomService: RoomService,
   ) {
+
+    this.authSub = this.authService.authorized().subscribe(
+      (logineResponse: LoginResponse) => {
+        if (logineResponse.success) {
+          this.email = logineResponse.success.email;
+        }
+      }
+    );
+
     this.eventSub = this.eventService.authSubject.subscribe(obj => {
       this.authSub = this.authService.authorized().subscribe(
         (logineResponse: LoginResponse) => {
@@ -52,6 +61,7 @@ export class RoomAddPageComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl('/login');
       }
     });
+
   }
 
   ngOnDestroy() {
