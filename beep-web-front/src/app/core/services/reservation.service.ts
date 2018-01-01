@@ -33,14 +33,12 @@ export class ReservationService {
 
     getAllReservationByRoomId(room_id: string): Observable<ReservationResponse> {
         return this.http.get(`reservations/${room_id}`).map((response: Response) => {
-            console.log(`ReservationService::getAllReservationByRoomId() => ${response.json()}`);
             return response.json();
         });
     }
 
     makeReservation(reservation: Reservation): Observable<boolean> {
         return this.http.post(`reservations/`, reservation).map((response: Response) => {
-            console.log(`ReservationService::makeReservation() => ${response.json()}`);
             if (response.json().error) {
                 return true;
             } else {

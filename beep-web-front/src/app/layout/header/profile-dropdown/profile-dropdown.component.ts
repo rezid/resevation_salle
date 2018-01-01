@@ -21,7 +21,6 @@ export class ProfileDropdownComponent implements OnInit {
   ngOnInit() {
     this.eventService.authSubject.subscribe(obj => {
       this.isAuthenticated = obj.isAuth;
-      console.log(`Event: auth = ${obj.isAuth}`);
     });
   }
 

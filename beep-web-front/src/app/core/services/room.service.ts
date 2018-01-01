@@ -32,7 +32,7 @@ export class RoomService {
 
     getAllRooms(): Observable<RoomResponse> {
         return this.http.get('rooms').map((response: Response) => {
-            console.log(`RoomService::getAllRooms() => ${response.json()}`);
+
             return response.json();
         });
     }
@@ -43,13 +43,13 @@ export class RoomService {
             if (success) {
                 this.eventService.addRoomEvent();
             }
-                return success;
-            });
+            return success;
+        });
     }
 
     getRoomById(roomid: string): Observable<RoomResponse> {
         return this.http.get(`rooms/${roomid}`).map((response: Response) => {
-            console.log(`RoomService::getRoomById() => ${response.json()}`);
+
             return response.json();
         });
     }
@@ -62,7 +62,7 @@ export class RoomService {
         }
 
         return this.http.post(`rooms/search`, temp).map((response: Response) => {
-            console.log(`RoomService::getRoomById() => ${response.json()}`);
+
             return response.json();
         });
 
