@@ -1,3 +1,57 @@
-<p>
-  search works!
-</p>
+<div class="row register-container" data-hook="">
+  <div id="content" class="col-sm-12" data-hook="">
+    <div class="col-md-5 col-centered">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Recherche avancée</h3>
+        </div>
+        <div id="existing-customer" class="panel-body" data-hook="login">
+          <p class="register-button-info-text register-info-text">- CRITERE NON OBLIGATOIRE -</p>
+          <form class="register-register-form" novalidate="" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <fieldset class="register-input-container">
+
+
+
+
+              <div class="register-input-item">
+                <input type="number" class="register-user-input-name register-user-input" name="size_min" formControlName="size_min" placeholder="Taille de la salle min"
+                  autocomplete="off">
+
+              </div>
+
+              <div class="register-input-item">
+                <input type="number" class="register-user-input-name register-user-input" name="size_max" formControlName="size_max" placeholder="Taille de la salle max"
+                  autocomplete="off">
+
+              </div>
+
+              <div class="register-input-item">
+                <input type="number" class="register-user-input-name register-user-input" name="price_min" formControlName="price_min" placeholder="Prix min"
+                  autocomplete="off">
+
+              </div>
+
+              <div class="register-input-item">
+                <input type="number" class="register-user-input-name register-user-input" name="price_max" formControlName="price_max" placeholder="Prix max"
+                  autocomplete="off">
+
+              </div>
+
+              <div class="register-input-item">
+                <input type="number" class="register-user-input-name register-user-input" name="postal_code" formControlName="postal_code"
+                  placeholder="Code postal" autocomplete="off">
+
+              </div>
+
+
+            </fieldset>
+            <fieldset class="register-register-button-container">
+              <button class="btn btn-danger register-register-button">Recherche</button>
+            </fieldset>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { AuthService } from './auth.service';
 
@@ -18,9 +19,12 @@ import { SearchCriteriaList } from '../models/search-criteria/search-criteria';
 @Injectable()
 export class EventService {
 
-    public authSubject = new Subject<{ isAuth: boolean }>();
+    public authSubject = new BehaviorSubject({ isAuth: false });
     public roomAddedSubject = new Subject();
-    public searchEvent = new Subject<SearchCriteriaList>();
+    public searchEvent = new BehaviorSubject({
+        count: 0,
+        search_criteria_list: []
+    });
 
     constructor(private authService: AuthService) {
         authService.authorized().subscribe(
@@ -47,6 +51,8 @@ export class EventService {
     newSearchEvent(searchCriteriaList: SearchCriteriaList) {
         this.searchEvent.next(searchCriteriaList);
     }
+
+
 
 
 }

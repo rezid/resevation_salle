@@ -26,6 +26,14 @@ export class FilterSummaryComponent implements OnInit {
   change_name(name: string) {
     if (name === 'postal_code') {
       return 'code postal';
+    } else if (name === 'price_min') {
+      return 'prix min';
+    } else if (name === 'price_max') {
+      return 'prix max';
+    } else if (name === 'size_min') {
+      return 'taille min';
+    } else if (name === 'size_max') {
+      return 'taille max';
     }
   }
 

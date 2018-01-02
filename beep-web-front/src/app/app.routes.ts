@@ -5,6 +5,7 @@ import { SignUpComponent } from './auth/component/sign-up/sign-up.component';
 import { RoomDetailPageComponent } from './room/room-detail-page/room-detail-page.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { RoomAddPageComponent } from './room/room-add-page/room-add-page.component';
+import { SearchComponent } from './search/search.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'room/:id', component: RoomDetailPageComponent },
   { path: 'reservation/:id_room', component: ReservationComponent },
   { path: 'addroom', component: RoomAddPageComponent },
+  { path: 'search', component: SearchComponent },
 ];
 
 

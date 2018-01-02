@@ -45,11 +45,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
     });
 
-    this.eventService.addRoomEvent();
   }
 
   ngOnDestroy(): void {
-    this.roomAddedSubjectInscription.unsubscribe();
-    this.roomsSub.unsubscribe();
+   // this.roomAddedSubjectInscription.unsubscribe();
+   // this.roomsSub.unsubscribe();
   }
 }

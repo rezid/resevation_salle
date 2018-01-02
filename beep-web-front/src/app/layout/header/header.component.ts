@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private eventService: EventService,
+    private router: Router,
   ) {
   }
 
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit {
 
   refresh() {
     this.eventService.addRoomEvent();
+    this.router.navigateByUrl('/');
   }
 
   search() {

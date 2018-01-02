@@ -330,27 +330,36 @@ apiRoutes.get('/reservations/:id_room', [
 // Serach room by postal code (POST http://localhost:8080/rooms/search)
 apiRoutes.post('/rooms/search', function (req, res) {
 
+    var query = Room.find({});
+
     // Access-Control-Allow-Origin' header is required.
     res.header('Access-Control-Allow-Origin', '*');
 
-    if (!req.body.postal_code) {
-        Room.find({}, function (err, rooms) {
-            if (err) throw err;
-            if (!rooms) {
-                return res.send({ count: 0, rooms: [] });
+    if (req.body.postal_code)
+        query.where('postal_code').equals(req.body.postal_code);
 
-            } else {
-                return res.send({ count: rooms.length, rooms: rooms });
-            }
-        });
-    }
+    if (req.body.price_min)
+        query.where('price').gte(req.body.price_min);
 
-    else {
-        Room.find({ postal_code: req.body.postal_code }, function (err, rooms) {
-            if (err) throw err;
-            res.send({ count: rooms.length, rooms: rooms });
-        });
-    }
+    if (req.body.price_max)
+        query.where('price').lte(req.body.price_max);
+
+    if (req.body.size_min)
+        query.where('size').gte(req.body.size_min);
+
+    if (req.body.size_max)
+        query.where('size').lte(req.body.size_max);
+
+
+    query.exec(function (err, rooms) {
+        if (err) throw err;
+        if (!rooms) {
+            return res.send({ count: 0, rooms: [] });
+
+        } else {
+            return res.send({ count: rooms.length, rooms: rooms });
+        }
+    });
 });
 
 
