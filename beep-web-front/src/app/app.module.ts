@@ -51,6 +51,7 @@ import { RoomDetailsComponent } from './room/room-detail-page/room-details/room-
 import { RoomDescriptionComponent } from './room/room-detail-page/room-description/room-description.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { RoomAddPageComponent } from './room/room-add-page/room-add-page.component';
+import { SearchComponent } from './search/search.component';
 
 
 export function httpInterceptor(
@@ -85,7 +86,8 @@ export function httpInterceptor(
     ProfileDropdownComponent,
     LoginComponent,
     SignUpComponent,
-    RoomAddPageComponent
+    RoomAddPageComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
