@@ -50,9 +50,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     this.profile = values;
 
-    console.log(values);
-    console.log(this.profile);
-
     const keys = Object.keys(values);
 
     if (this.signUpForm.valid) {

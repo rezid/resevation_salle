@@ -33,7 +33,6 @@ app.get('/', function (req, res) {
 
 // Start the server
 app.listen(port);
-console.log('There will be dragons: http://localhost:' + port);
 
 
 
@@ -335,7 +334,6 @@ apiRoutes.post('/rooms/search', function (req, res) {
     res.header('Access-Control-Allow-Origin', '*');
 
     if (!req.body.postal_code) {
-        console.log('i am here');
         Room.find({}, function (err, rooms) {
             if (err) throw err;
             if (!rooms) {
@@ -362,7 +360,7 @@ apiRoutes.post('/rooms/search', function (req, res) {
 // delete rooms
 apiRoutes.get('/Rooms/room/deleteRoom', function (req, res) {
     var id = req.param('var', 'not found');
-    console.log(id);
+
     Room.findOne({ _id: id }, function (err, room) {
         if (err) throw err;
         if (!room) {
@@ -370,7 +368,6 @@ apiRoutes.get('/Rooms/room/deleteRoom', function (req, res) {
         }
         else {
             res.send({ success: true, msg: 'the room had been deleted', 'room informations ': room });
-            console.log("This object will get deleted " + room);
             room.remove();
         }
     });
