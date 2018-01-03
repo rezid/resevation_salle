@@ -11,6 +11,7 @@ import { routes } from './app.routes';
 import { CalendarModule } from 'angular-calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarComponent } from './reservation/calendar/calendar.component';
+import { MyDatePickerModule } from 'mydatepicker';
 
 // Services
 import { Http, HttpModule, XHRBackend, RequestOptions } from '@angular/http';
@@ -97,6 +98,7 @@ export function httpInterceptor(
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
     RouterModule.forRoot(routes),
+    MyDatePickerModule,
   ],
   providers: [
     AuthService,

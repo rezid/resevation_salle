@@ -283,8 +283,8 @@ apiRoutes.post('/reservations', [
     // create new reservation
     reservation = new Reservation({
         id_room: req.body.id_room,
-        start_date: new Date(req.body.start_date),
-        end_date: new Date(req.body.end_date),
+        start_date: new Date(req.body.start_date.year, req.body.start_date.month - 1, req.body.start_date.day),
+        end_date: new Date(req.body.end_date.year, req.body.end_date.month - 1, req.body.end_date.day),
     });
 
 
@@ -350,6 +350,11 @@ apiRoutes.post('/rooms/search', function (req, res) {
     if (req.body.size_max)
         query.where('size').lte(req.body.size_max);
 
+    if (req.body.type) {
+        query.where('type').in(req.body.type.split(/[ ,]+/).filter(Boolean));
+        console.log(req.body.type.split(/[ ,]+/).filter(Boolean));
+    }
+
 
     query.exec(function (err, rooms) {
         if (err) throw err;
@@ -361,7 +366,6 @@ apiRoutes.post('/rooms/search', function (req, res) {
         }
     });
 });
-
 
 
 //---------------------------------------------------------------------------------------------------------

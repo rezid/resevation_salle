@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { IMyDpOptions } from 'mydatepicker';
 
 
 // adding rx operators
@@ -63,6 +64,11 @@ export class ReservationComponent implements OnInit {
     );
   }
 
+  public myDatePickerOptions: IMyDpOptions = {
+    // other options...
+    dateFormat: 'dd/mm/yyyy',
+  };
+
   ngOnInit() {
     this.initForm();
     // get return url from route parameters or default to '/'
@@ -75,14 +81,17 @@ export class ReservationComponent implements OnInit {
 
     const reservation: Reservation = {
       id_room: this.room_id,
-      end_date: start_and_end_date.end_date,
-      start_date: start_and_end_date.start_date
+      end_date: start_and_end_date.end_date.date,
+      start_date: start_and_end_date.start_date.date
     };
+
+    console.log(reservation);
 
     if (this.signInForm.valid) {
       this.registerSubs = this.reservationService.makeReservation(reservation)
         .subscribe((error: boolean) => {
           if (error) {
+            console.log('error');
             this.pushErrorFor('start_date', 'Impossible de reserver pour ses dates.');
           } else {
             this.router.navigateByUrl(`/room/${this.room_id}`);

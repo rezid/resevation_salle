@@ -1,22 +1,15 @@
 <h4 class="heading">Catégorie</h4>
 <div class="filter-box">
+  
   <ul class="taxonomy" *ngFor="let taxon of taxonomies">
     <li class="filter">
-      <label class="vertical-filters-label common-customCheckbox coming-soon">
-        <input type="checkbox" [checked]="isChecked(taxon)" (click)="taxonSelected(taxon, $event.target.checked)"> 
+      <label class="vertical-filters-label common-customCheckbox">
+        <input type="checkbox" (click)="taxonSelected(taxon, $event.target.checked)"> 
         {{taxon.name}}
         <div class="common-checkboxIndicator"></div>
       </label>
     </li>
   </ul>
 
-  <ul class="taxonomy">
-    <li class="filter">
-      <label class="vertical-filters-label common-customCheckbox coming-soon">
-        <input type="checkbox" checked> 
-        Fête
-        <div class="common-checkboxIndicator"></div>
-      </label>
-    </li>
-  </ul>
+
 </div>

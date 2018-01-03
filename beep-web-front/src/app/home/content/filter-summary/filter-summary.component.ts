@@ -34,6 +34,8 @@ export class FilterSummaryComponent implements OnInit {
       return 'taille min';
     } else if (name === 'size_max') {
       return 'taille max';
+    } else if (name === 'type') {
+      return 'type';
     }
   }
 

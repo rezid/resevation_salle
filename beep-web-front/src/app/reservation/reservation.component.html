@@ -7,34 +7,40 @@
         </div>
 
         <div class="calandar">
-          <app-calendar  [reservationList$]="reservations$"></app-calendar>
+          <app-calendar [reservationList$]="reservations$"></app-calendar>
         </div>
-        
 
-        
+
+
         <div id="existing-customer" class="panel-body" data-hook="reservation">
-          
+
           <p class="reservation-info-text">- INSERER LES DATES -</p>
           <form class="reservation-reservation-form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
             <fieldset class="reservation-input-container">
-              
+
               <div class="reservation-input-item">
-                <input type="email" class="reservation-user-input-email reservation-user-input" name="start_date" placeholder="Date début" formControlName="start_date"
-                  autocomplete="off">
+                <my-date-picker class="reservation-user-input-password reservation-user-input" name="start-date" [options]="myDatePickerOptions"
+                  required placeholder="Date de Debut" formControlName="start_date" autocomplete="off"></my-date-picker>
                 <div *ngIf="signInForm.get('start_date').errors && signInForm.get('start_date').touched">
-                  <span class="reservation-error-icon text-danger">!</span>
-                  <p class="reservation-error-message text-danger">{{signInForm.get('start_date').errors.msg || 'Ce champ est obligatoire'}}</p>
+                  
+                  <p class="reservation-error-message text-danger">La date doit etre valide.</p>
                 </div>
               </div>
 
               <div class="reservation-input-item">
-                <input type="text" class="reservation-user-input-password reservation-user-input" name="end_date" placeholder="Date de Fin" formControlName="end_date"
-                  autocomplete="off">
+                <my-date-picker class="reservation-user-input-password reservation-user-input" name="end_date" [options]="myDatePickerOptions"
+                  required placeholder="Date de Fin" formControlName="end_date" autocomplete="off"></my-date-picker>
                 <div *ngIf="signInForm.get('end_date').errors && signInForm.get('end_date').touched">
-                  <span class="reservation-error-icon text-danger">!</span>
-                  <p class="reservation-error-message text-danger">Au moins 6 caractères.</p>
+                 
+                  <p class="reservation-error-message text-danger">La date doit etre valide.</p>
                 </div>
               </div>
+
+
+
+
+
+
             </fieldset>
             <fieldset class="reservation-reservation-button-container">
               <button type="submit" class="btn btn-danger reservation-reservation-button">Réserver</button>

@@ -101,16 +101,19 @@
               </div>
 
               <fieldset data-type="horizontal" class="register-gender">
-                <legend class="register-gender-title">Une salle pour un</legend>
+                <legend class="register-gender-title">Une salle pour</legend>
 
-                <input type="radio" class="register-gender-radio" id="music" name="type" value="Anniversaire" formControlName="type">
+                <input type="radio" class="register-gender-radio" id="Anniversary" name="type" value="anniversary" formControlName="type">
                 <label class="register-gender-label" for="music">Anniversaire</label>
 
-                <input type="radio" class="register-gender-radio" id="wedding" name="type" value="Mariage" formControlName="type">
+                <input type="radio" class="register-gender-radio" id="wedding" name="type" value="wedding" formControlName="type">
                 <label class="register-gender-label" for="wedding">Mariage</label>
 
-                <input type="radio" class="register-gender-radio" id="all" name="type" value="Tout" formControlName="type">
-                <label class="register-gender-label" for="female">Tout</label>
+                <input type="radio" class="register-gender-radio" id="music" name="type" value="music" formControlName="type">
+                <label class="register-gender-label" for="female">Musique</label>
+
+                <input type="radio" class="register-gender-radio" id="music" name="type" value="party" formControlName="type">
+                <label class="register-gender-label" for="female">Fête</label>
 
                 <div *ngIf="signUpForm.get('type').errors && signUpForm.get('type').touched">
                   <span class="register-gender-error-icon register-error-icon">!</span>

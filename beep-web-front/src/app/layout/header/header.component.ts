@@ -22,27 +22,32 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  refresh() {
-    this.eventService.addRoomEvent();
-    this.router.navigateByUrl('/');
-  }
+
 
   search() {
+
+    const criteria_serch_list = this.eventService.searchEvent.getValue();
+
+    for (const i in criteria_serch_list.search_criteria_list) {
+      if (criteria_serch_list.search_criteria_list[i].name === 'postal_code') {
+        criteria_serch_list.count--;
+        criteria_serch_list.search_criteria_list.splice(parseInt(i, 10), 1);
+        break;
+      }
+    }
+
+
     if (this.postal_code != null) {
-      this.eventService.newSearchEvent({
-        count: 1,
-        search_criteria_list: [
-          {
-            name: 'postal_code',
-            value: this.postal_code,
-          },
-        ],
+
+      criteria_serch_list.search_criteria_list.push({
+        name: 'postal_code',
+        value: this.postal_code,
       });
+
+      criteria_serch_list.count++;
+      this.eventService.newSearchEvent(criteria_serch_list);
     } else {
-      this.eventService.newSearchEvent({
-        count: 0,
-        search_criteria_list: [],
-      });
+      this.eventService.newSearchEvent(criteria_serch_list);
 
     }
   }
