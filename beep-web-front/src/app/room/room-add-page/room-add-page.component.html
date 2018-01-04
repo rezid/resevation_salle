@@ -8,6 +8,14 @@
         <div id="existing-customer" class="panel-body" data-hook="login">
           <p class="register-button-info-text register-info-text">- FORMULAIRE -</p>
           <form class="register-register-form" novalidate="" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+
+            <label class="fileContainer">
+              Cliquez ici pour uploader une image
+              <input type="file" />
+            </label>
+
+
             <fieldset class="register-input-container">
 
               <div class="register-input-item">
@@ -101,18 +109,22 @@
               </div>
 
               <fieldset data-type="horizontal" class="register-gender">
+
+
+
+
                 <legend class="register-gender-title">Une salle pour</legend>
 
-                <input type="radio" class="register-gender-radio" id="Anniversary" name="type" value="anniversary" formControlName="type">
+                <input type="radio" class="register-gender-radio" id="Anniversary" name="type" value="Anniversaire" formControlName="type">
                 <label class="register-gender-label" for="music">Anniversaire</label>
 
-                <input type="radio" class="register-gender-radio" id="wedding" name="type" value="wedding" formControlName="type">
+                <input type="radio" class="register-gender-radio" id="wedding" name="type" value="Mariage" formControlName="type">
                 <label class="register-gender-label" for="wedding">Mariage</label>
 
-                <input type="radio" class="register-gender-radio" id="music" name="type" value="music" formControlName="type">
+                <input type="radio" class="register-gender-radio" id="music" name="type" value="Musique" formControlName="type">
                 <label class="register-gender-label" for="female">Musique</label>
 
-                <input type="radio" class="register-gender-radio" id="music" name="type" value="party" formControlName="type">
+                <input type="radio" class="register-gender-radio" id="fete" name="type" value="Fête" formControlName="type">
                 <label class="register-gender-label" for="female">Fête</label>
 
                 <div *ngIf="signUpForm.get('type').errors && signUpForm.get('type').touched">
@@ -126,14 +138,6 @@
               <button class="btn btn-danger register-register-button">Enrégistrer</button>
             </fieldset>
           </form>
-          <div class="register-link-container">
-            <small>
-              <div class="register-login-link">
-                <span class="register-info-text">Déjà inscrit sur Beep ?</span>
-                <a class="register-create-account-link register-link text-danger" [routerLink]="['/login']">Connexion!</a>
-              </div>
-            </small>
-          </div>
         </div>
       </div>
     </div>

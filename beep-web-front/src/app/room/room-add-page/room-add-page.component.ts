@@ -92,6 +92,7 @@ export class RoomAddPageComponent implements OnInit, OnDestroy {
             this.pushErrorFor('name', 'Une erreur est survenu.');
           } else {
             this.eventService.addRoomEvent();
+            this.eventService.newSearchEvent({count: 0, search_criteria_list: []});
             this.router.navigateByUrl('/');
           }
         });

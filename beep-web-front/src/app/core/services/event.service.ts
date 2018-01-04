@@ -21,6 +21,7 @@ export class EventService {
 
     public authSubject = new BehaviorSubject({ isAuth: false });
     public roomAddedSubject = new Subject();
+
     public searchEvent = new BehaviorSubject({
         count: 0,
         search_criteria_list: []
@@ -50,6 +51,24 @@ export class EventService {
 
     newSearchEvent(searchCriteriaList: SearchCriteriaList) {
         this.searchEvent.next(searchCriteriaList);
+    }
+
+
+    addNewSearchEvent(name: string, value: string) {
+        const search: SearchCriteriaList = this.searchEvent.getValue();
+        for (const i in search.search_criteria_list) {
+            if (search.search_criteria_list[i].name === 'sort') {
+                search.search_criteria_list[i].value = value;
+                console.log(search);
+                this.searchEvent.next(search);
+                return;
+            }
+        }
+
+        search.count++;
+        search.search_criteria_list.push({ name: name, value: value });
+        console.log(search);
+        this.searchEvent.next(search);
     }
 
 

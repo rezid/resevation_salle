@@ -14,12 +14,11 @@
   
     <ul class="sort">
       <label>Trier:</label>
-      <li data-sortkey=":popularity" class="coming-soon">Populaire</li>
-      <li data-sortkey=":new" class="coming-soon">Nouveau</li>
-      <li data-sortkey=":discount" class="coming-soon">Remise</li>
+      <li data-sortkey=":new" (click)= "sort_new()">Nouveau</li>
+      <li data-sortkey=":new" (click)= "sort_old()">Ancien</li>
       <label>Prix: 
-        <li data-sortkey=":low" class="coming-soon">Bas</li>
-        <li data-sortkey=":high" class="coming-soon">Haut</li>
+        <li data-sortkey=":low" (click)= "sort_price_low()">Bas</li>
+        <li data-sortkey=":high" (click)= "sort_price_high()">Haut</li>
       </label>
     </ul>
   </div>

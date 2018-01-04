@@ -25,17 +25,19 @@ export class FilterSummaryComponent implements OnInit {
 
   change_name(name: string) {
     if (name === 'postal_code') {
-      return 'code postal';
+      return 'Code Postal';
     } else if (name === 'price_min') {
-      return 'prix min';
+      return 'Prix Min';
     } else if (name === 'price_max') {
-      return 'prix max';
+      return 'Prix Max';
     } else if (name === 'size_min') {
-      return 'taille min';
+      return 'Taille Min';
     } else if (name === 'size_max') {
-      return 'taille max';
+      return 'Taille Max';
     } else if (name === 'type') {
-      return 'type';
+      return 'Type';
+    } else if (name === 'sort') {
+      return 'Trie';
     }
   }
 
