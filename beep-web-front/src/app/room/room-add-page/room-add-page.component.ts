@@ -83,10 +83,6 @@ export class RoomAddPageComponent implements OnInit, OnDestroy {
     values.email_owner = this.email;
     this.room = values;
 
-    console.log(values);
-
-    return;
-
     const keys = Object.keys(values);
 
     if (this.signUpForm.valid) {
@@ -99,10 +95,11 @@ export class RoomAddPageComponent implements OnInit, OnDestroy {
             this.eventService.addRoomEvent();
             this.eventService.newSearchEvent({ count: 0, search_criteria_list: [] });
 
-            // test if pecture then addPicture to room
+            /* test if pecture then addPicture to room
             if (this.picture !== '') {
               this.roomService.addPicture(this.picture, success.id_room);
-            }
+            } */
+
             this.router.navigateByUrl('/');
           }
         });
