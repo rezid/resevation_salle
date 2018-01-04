@@ -14,6 +14,8 @@ var Reservation = require('./models/reservation');
 const validator = require('validator');
 const { check, validationResult } = require('express-validator/check');
 var bcrypt = require('bcrypt');
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 
 // get our request parameters
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -330,7 +332,7 @@ apiRoutes.get('/reservations/:id_room', [
 // Serach room by postal code (POST http://localhost:8080/rooms/search)
 apiRoutes.post('/rooms/search', function (req, res) {
 
-    var query = Room.find({});
+    var query = Room.find({});    
 
     // Access-Control-Allow-Origin' header is required.
     res.header('Access-Control-Allow-Origin', '*');
@@ -352,10 +354,29 @@ apiRoutes.post('/rooms/search', function (req, res) {
 
     if (req.body.type) {
         query.where('type').in(req.body.type.split(/[ ,]+/).filter(Boolean));
-        console.log(req.body.type.split(/[ ,]+/).filter(Boolean));
     }
 
-
+    if (req.body.sort) {
+        switch(req.body.sort) {
+            case 'price_low':
+            query.sort({price: 1});
+            break;
+            case 'price_high':
+            query.sort({price: -1});
+            break;
+            case 'old':
+            query.sort({_id: 1});
+            break;
+            case 'new':
+            query.sort({_id: -1});
+            break;
+            default:
+            
+        } 
+    } else {
+        query.sort({_id: -1});
+    }
+    
     query.exec(function (err, rooms) {
         if (err) throw err;
         if (!rooms) {
@@ -366,6 +387,19 @@ apiRoutes.post('/rooms/search', function (req, res) {
         }
     });
 });
+
+
+
+var cpUpload = upload.fields([{ name: 'principal', maxCount: 1 }, { name: 'gallery', maxCount: 1 }])
+app.post('/pictures', cpUpload, function (req, res, next) {
+  // req.files is an object (String -> Array) where fieldname is the key, and the value is array of files 
+  // 
+  // e.g. 
+  //  req.files['principal'][0] -> File 
+  //  req.files['gallery'] -> Array 
+  // 
+  // req.body will contain the text fields, if there were any 
+})
 
 
 //---------------------------------------------------------------------------------------------------------
