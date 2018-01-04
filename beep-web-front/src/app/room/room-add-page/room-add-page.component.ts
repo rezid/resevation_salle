@@ -83,6 +83,10 @@ export class RoomAddPageComponent implements OnInit, OnDestroy {
     values.email_owner = this.email;
     this.room = values;
 
+    console.log(values);
+
+    return;
+
     const keys = Object.keys(values);
 
     if (this.signUpForm.valid) {
