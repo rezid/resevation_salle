@@ -15,7 +15,7 @@ const validator = require('validator');
 const { check, validationResult } = require('express-validator/check');
 var bcrypt = require('bcrypt');
 var multer = require('multer')
-var upload = multer({ limits: { fileSize: 2000000 }, dest: '/uploads/' })
+var upload = multer({ limits: { fileSize: 2000000 }, dest: './uploads/' })
 var fs = require('fs-extra');
 var util = require('util');
 // get our request parameters
@@ -226,11 +226,13 @@ apiRoutes.post('/rooms', function (req, res) {
             country: req.body.country,
         });
         // save the room
+
+
         newRoom.save(function (err) {
             if (err) {
                 return res.json({ error: true, message: err.message });
             }
-            return res.json({ error: false });
+            return res.json({ error: false, id_room: newRoom._id });
         });
     }
 });
@@ -390,23 +392,22 @@ apiRoutes.post('/rooms/search', function (req, res) {
 });
 
 // POST room picture
-apiRoutes.post('/uploadpicture', upload.single('picture'), function (req, res) {
+apiRoutes.post('/pictures', function (req, res) {
 
-    if (req.file == null) {
+    console.log("dssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+    // Access-Control-Allow-Origin' header is required.
+    res.header('Access-Control-Allow-Origin', '*');
+    if (!req.body.id_room || !req.body.picture) {
         // If Submit was accidentally clicked with no file selected...
-        res.render('index', { title: 'Please select a picture file to submit!' });
+        return res.json({
+            error: true,
+            message: 'id_room, picture must be sets'
+        });
     } else {
 
-        // read the img file from tmp in-memory location
-        var newImg = fs.readFileSync(req.file.path);
-        // encode the file as a base64 string.
-        var encImg = newImg.toString('base64');
-        // define your new document
         var newItem = new Picture({
             id_room: req.body.id_room,
-            contentType: req.file.mimetype,
-            size: req.file.size,
-            img: Buffer(encImg, 'base64')
+            img: this.body.picture,
         });
 
         newItem.save(function (err) {
@@ -421,6 +422,10 @@ apiRoutes.post('/uploadpicture', upload.single('picture'), function (req, res) {
 
 // GET room picture
 apiRoutes.get('/pictures/:id_room', function (req, res) {
+
+    
+    // Access-Control-Allow-Origin' header is required.
+    res.header('Access-Control-Allow-Origin', '*');
     // assign the URL parameter to a variable
     var id_room = req.params.id_room;
     // open the mongodb connection with the connection
@@ -439,62 +444,6 @@ apiRoutes.get('/pictures/:id_room', function (req, res) {
 
 //---------------------------------------------------------------------------------------------------------
 
-// delete rooms
-apiRoutes.get('/Rooms/room/deleteRoom', function (req, res) {
-    var id = req.param('var', 'not found');
-
-    Room.findOne({ _id: id }, function (err, room) {
-        if (err) throw err;
-        if (!room) {
-            res.send({ success: false, msg: 'no room found of this name ... !!.' });
-        }
-        else {
-            res.send({ success: true, msg: 'the room had been deleted', 'room informations ': room });
-            room.remove();
-        }
-    });
-
-
-});
-// rooms dispo
-apiRoutes.get('/Rooms/room/roomDispo', function (req, res) {
-    Room.find({ Etat: 'disponible' }, function (err, rooms) {
-        if (err) throw err;
-        var roomMap = {};
-
-        rooms.forEach(function (room) {
-            roomMap[room._id] = room;
-        });
-
-        res.send(roomMap);
-
-    });
-
-});
-
-
-
-
-// route to a restricted info (GET http://localhost:8080/api/memberinfo)
-apiRoutes.get('/memberinfo', passport.authenticate('jwt', { session: false }), function (req, res) {
-    var token = getToken(req.headers);
-    if (token) {
-        var decoded = jwt.decode(token, config.secret);
-        User.findOne({
-            name: decoded.name
-        }, function (err, user) {
-            if (err) throw err;
-
-            if (!user) {
-                return res.status(403).send({ success: false, msg: 'Authentication failed. User not found.' });
-            } else {
-                res.json({ success: true, msg: 'Welcome in the member area ' + user.name + '!' });
-            }
-        });
-    } else {
-        return res.status(403).send({ success: false, msg: 'No token provided.' });
-    }
-});
 
 getToken = function (headers) {
     if (headers && headers.authorization) {

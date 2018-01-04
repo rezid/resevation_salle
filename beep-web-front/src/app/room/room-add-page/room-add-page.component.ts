@@ -32,6 +32,7 @@ export class RoomAddPageComponent implements OnInit, OnDestroy {
   eventSub: Subscription;
   roomSubs: Subscription;
   room: Room;
+  picture = '';
 
   constructor(
     private eventService: EventService,
@@ -86,13 +87,18 @@ export class RoomAddPageComponent implements OnInit, OnDestroy {
 
     if (this.signUpForm.valid) {
       this.roomSubs = this.roomService.addRoom(this.room)
-        .subscribe((success: boolean) => {
-          const error = !success;
+        .subscribe((success: any) => {
+          const error = !success.success;
           if (error) {
             this.pushErrorFor('name', 'Une erreur est survenu.');
           } else {
             this.eventService.addRoomEvent();
-            this.eventService.newSearchEvent({count: 0, search_criteria_list: []});
+            this.eventService.newSearchEvent({ count: 0, search_criteria_list: [] });
+
+            // test if pecture then addPicture to room
+            if (this.picture !== '') {
+              this.roomService.addPicture(this.picture, success.id_room);
+            }
             this.router.navigateByUrl('/');
           }
         });
@@ -139,8 +145,22 @@ export class RoomAddPageComponent implements OnInit, OnDestroy {
       'street_name': [street_name, Validators.required],
       'city': [city, Validators.required],
       'postal_code': [postal_code, Validators.required],
-      'description': [description, Validators.required],
+      'description': [description, Validators.required]
     });
+  }
+
+
+  openFile(event) {
+    const input = event.target;
+    for (let index = 0; index < input.files.length; index++) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        // this 'text' is the content of the file
+        this.picture = reader.result;
+
+      };
+      reader.readAsText(input.files[index]);
+    }
   }
 
 }

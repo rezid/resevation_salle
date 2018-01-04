@@ -37,19 +37,19 @@ export class RoomService {
         });
     }
 
-    addRoom(room: Room): Observable<boolean> {
+    addRoom(room: Room): Observable<any> {
         return this.http.post('rooms', room).map((response: Response) => {
             const success = !response.json().error;
             if (success) {
                 this.eventService.addRoomEvent();
             }
-            return success;
+
+            return { success: success, id_room: response.json().id_room };
         });
     }
 
     getRoomById(roomid: string): Observable<RoomResponse> {
         return this.http.get(`rooms/${roomid}`).map((response: Response) => {
-
             return response.json();
         });
     }
@@ -66,6 +66,14 @@ export class RoomService {
             return response.json();
         });
 
+    }
+
+    addPicture(picture: string, id_room: string): Observable<boolean> {
+        console.log('addPicture()');
+        return this.http.post('pictures', { id_room: id_room, picture: picture }).map((response: Response) => {
+            console.log('addPicture()');
+            return true;
+        });
     }
 
 }

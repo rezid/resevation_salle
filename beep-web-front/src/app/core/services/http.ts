@@ -71,7 +71,6 @@ export class HttpService extends Http {
 
     console.log(`POST ${this.getFullUrl(url)}`);
 
-
     this.requestInterceptor();
     return super.post(this.getFullUrl(url), body, this.requestOptions(options))
       .catch(this.onCatch.bind(this))
