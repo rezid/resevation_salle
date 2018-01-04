@@ -14,9 +14,10 @@ var Reservation = require('./models/reservation');
 const validator = require('validator');
 const { check, validationResult } = require('express-validator/check');
 var bcrypt = require('bcrypt');
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
-
+var multer = require('multer')
+var upload = multer({ limits: { fileSize: 2000000 }, dest: '/uploads/' })
+var fs = require('fs-extra');
+var util = require('util');
 // get our request parameters
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -332,7 +333,7 @@ apiRoutes.get('/reservations/:id_room', [
 // Serach room by postal code (POST http://localhost:8080/rooms/search)
 apiRoutes.post('/rooms/search', function (req, res) {
 
-    var query = Room.find({});    
+    var query = Room.find({});
 
     // Access-Control-Allow-Origin' header is required.
     res.header('Access-Control-Allow-Origin', '*');
@@ -357,26 +358,26 @@ apiRoutes.post('/rooms/search', function (req, res) {
     }
 
     if (req.body.sort) {
-        switch(req.body.sort) {
+        switch (req.body.sort) {
             case 'price_low':
-            query.sort({price: 1});
-            break;
+                query.sort({ price: 1 });
+                break;
             case 'price_high':
-            query.sort({price: -1});
-            break;
+                query.sort({ price: -1 });
+                break;
             case 'old':
-            query.sort({_id: 1});
-            break;
+                query.sort({ _id: 1 });
+                break;
             case 'new':
-            query.sort({_id: -1});
-            break;
+                query.sort({ _id: -1 });
+                break;
             default:
-            
-        } 
+
+        }
     } else {
-        query.sort({_id: -1});
+        query.sort({ _id: -1 });
     }
-    
+
     query.exec(function (err, rooms) {
         if (err) throw err;
         if (!rooms) {
@@ -388,18 +389,52 @@ apiRoutes.post('/rooms/search', function (req, res) {
     });
 });
 
+// POST room picture
+apiRoutes.post('/uploadpicture', upload.single('picture'), function (req, res) {
 
+    if (req.file == null) {
+        // If Submit was accidentally clicked with no file selected...
+        res.render('index', { title: 'Please select a picture file to submit!' });
+    } else {
 
-var cpUpload = upload.fields([{ name: 'principal', maxCount: 1 }, { name: 'gallery', maxCount: 1 }])
-app.post('/pictures', cpUpload, function (req, res, next) {
-  // req.files is an object (String -> Array) where fieldname is the key, and the value is array of files 
-  // 
-  // e.g. 
-  //  req.files['principal'][0] -> File 
-  //  req.files['gallery'] -> Array 
-  // 
-  // req.body will contain the text fields, if there were any 
-})
+        // read the img file from tmp in-memory location
+        var newImg = fs.readFileSync(req.file.path);
+        // encode the file as a base64 string.
+        var encImg = newImg.toString('base64');
+        // define your new document
+        var newItem = new Picture({
+            id_room: req.body.id_room,
+            contentType: req.file.mimetype,
+            size: req.file.size,
+            img: Buffer(encImg, 'base64')
+        });
+
+        newItem.save(function (err) {
+            if (err) {
+                return res.json({ error: true, message: err.message });
+            }
+            return res.json({ error: false });
+        });
+
+    }
+});
+
+// GET room picture
+apiRoutes.get('/pictures/:id_room', function (req, res) {
+    // assign the URL parameter to a variable
+    var id_room = req.params.id_room;
+    // open the mongodb connection with the connection
+    // string stored in the variable called url.
+
+    Picture.find({ 'id_room': id_room }, function (err, pictures) {
+        // set the http response header so the browser knows this
+        // is an 'image/jpeg' or 'image/png'
+        res.setHeader('content-type', results.contentType);
+        // send only the base64 string stored in the img object
+        // buffer element
+        res.send({ size: pictures.length, pictures: pictures });
+    });
+});
 
 
 //---------------------------------------------------------------------------------------------------------
