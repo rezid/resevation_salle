@@ -82,6 +82,10 @@ export class RoomAddPageComponent implements OnInit, OnDestroy {
     values.email_owner = this.email;
     this.room = values;
 
+    console.log(values);
+
+    return;
+
     const keys = Object.keys(values);
 
     if (this.signUpForm.valid) {
@@ -139,8 +143,21 @@ export class RoomAddPageComponent implements OnInit, OnDestroy {
       'street_name': [street_name, Validators.required],
       'city': [city, Validators.required],
       'postal_code': [postal_code, Validators.required],
-      'description': [description, Validators.required],
+      'description': [description, Validators.required]
     });
   }
+
+
+  openFile(event) {
+    const input = event.target;
+    for (let index = 0; index < input.files.length; index++) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            // this 'text' is the content of the file
+            const text = reader.result;
+        };
+        reader.readAsText(input.files[index]);
+    }
+}
 
 }
