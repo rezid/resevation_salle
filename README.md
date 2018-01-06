@@ -135,8 +135,8 @@ $ ???
 ```
  
 
-## Authors
+## Autheurs
 
-* **ZIDANE Abderrazak** - *Initial work* - [rezid](https://github.com/rezid)
+* **ZIDANE Abderrazak** [rezid](https://github.com/rezid)
 
 * **Aissata Ba**
