@@ -26,14 +26,14 @@ Si il y a deja une base de données nommé 'room-data-base' alors il faut la sup
 $ mongo
 MongoDB shell version: 3.2.18
 ...
-> show dbs
+'>' show dbs
 local ...
 room-data-base
-> use room-data-base
+'>' use room-data-base
 switched to db room-data-base
-> db.dropDatabase()
+'>' db.dropDatabase()
 { "dropped" : "room-data-base", "ok" : 1 }
-> show dbs
+'>' show dbs
 local ...
 `` `
 
@@ -101,7 +101,7 @@ $ ng serve -o
 ```
 
 On aura l'image suivante:
-![Alt text](./image/1.jpg?raw=true "Title")
+![Alt text](./image/1.png?raw=true "Title")
 
 ## Running the tests
 
