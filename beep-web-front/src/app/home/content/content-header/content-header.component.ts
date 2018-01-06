@@ -8,7 +8,7 @@ import { EventService } from '../../../core/services/event.service';
 })
 export class ContentHeaderComponent implements OnInit {
   @Output() toggleSize = new EventEmitter();
-  selectedSize = 'COZY';
+  selectedSize = 'COMPACT';
 
   constructor(
     private eventService: EventService,

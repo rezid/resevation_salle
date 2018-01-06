@@ -10,7 +10,7 @@ export class ContentComponent implements OnInit {
 
   @Input() rooms: Room[];
 
-  toggleLayout = { size: 'COZY' };
+  toggleLayout = { size: 'COMPACT' };
 
   constructor() { }
 

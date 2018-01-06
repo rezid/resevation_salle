@@ -1,38 +1,107 @@
 # Beep
 
-Beep est une application de mise en contact d'utilisateurs qui recherche une salle, avec des personnes qui possedent ce bien immobilier et qui desirent le louer. 
+Beep est une application de mise en contact d'utilisateurs qui souhaite reserver une salle, avec des personnes qui possedent ce bien immobilier et qui desirent le louer. 
 
-Grace a Beep, trouvez le lieu idéal pour votre evenement partout en France.
+## Commencer
 
-## Getting Started
+Ces instructions vous permettront d'obtenir une copie du projet opérationnel sur votre machine locale à des fins de développement et de test.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+### Conditions préalables
 
-### Prerequisites
+De quoi avez-vous besoin pour installer le logiciel et comment les installer
 
-What things you need to install the software and how to install them
+MongoDB doit etre installer:
+`` `
+$ mongo --version
+MongoDB shell version: 3.2.18
+`` `
+
+Le service de MongoDB doit etre lancé:
+`` `
+$ sudo service mongod start
+`` `
+
+Si il y a deja une base de données nommé 'room-data-base' alors il faut la supprimer:
+`` `
+$ mongo
+MongoDB shell version: 3.2.18
+...
+> show dbs
+local ...
+room-data-base
+> use room-data-base
+switched to db room-data-base
+> db.dropDatabase()
+{ "dropped" : "room-data-base", "ok" : 1 }
+> show dbs
+local ...
+`` `
+
+NPM doit etre installer:
+`` `
+$ npm --version
+5.5.1
+`` `
+On installer angular CLI v1.0.0 globalement grace a NPM:
+`` `
+$ npm install -g @angular/cli@1.0.0
+...
++ angular-cli@1.0.0-beta.28.3
+...
+`` `
+
+De preference il faut aussi avoir Git installé:
+`` `
+$ git --version
+git version 2.7.4
+`` `
+
+### Installer et lancer le site web en local
+
+#### Lancer le Backend
+
+On commence par lancer le backend
+
+On se positionne dans le repertoir du backend:
+```
+$ cd ./beep-backend
 
 ```
-Give examples
+
+On installe les dependances (uniquement la premiere fois):
+```
+$ npm install
+...
+added ... packages in 12.584s
 ```
 
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
+On execute le backend en tache de fond:
 ```
-Give the example
+$ npm start
 ```
 
-And repeat
+#### Lancer le Frontend
+Le backend doit etre deja lancer avant de faire les etapes suivantes: 
+On se positionne dans le repertoir du Frontend:
+```
+$ cd ./beep-web-front
 
 ```
-until finished
+
+On installe les dependances (uniquement la premiere fois):
+```
+$ npm install
+...
+added ... packages in 12.584s
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+On execute le Frontend avec l'ouverture automatique du navigateur:
+```
+$ ng serve -o
+```
+
+On aura l'image suivante:
+![Alt text](./image/1.jpg?raw=true "Title")
 
 ## Running the tests
 
