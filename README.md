@@ -103,56 +103,40 @@ $ ng serve -o
 On aura l'image suivante:
 ![Alt text](./image/1.png?raw=true "Title")
 
-## Running the tests
+A l'etat initial le site web ne contient pas de salle. Il faut donc dans un premier temps crée un compte et ajouter des salles ensuite on peut les reserver
 
-Explain how to run the automated tests for this system
+## Exemple d'utilisation
+Creation de compte:
+![Alt text](./image/2.png?raw=true "Title")
 
-### Break down into end to end tests
+Ajouter une salle:
+![Alt text](./image/3.png?raw=true "Title")
+![Alt text](./image/4.png?raw=true "Title")
 
-Explain what these tests test and why
+Detaille d'une salle:
+![Alt text](./image/5.png?raw=true "Title")
+
+Reserver une salle:
+![Alt text](./image/6.png?raw=true "Title")
+
+## Lancer les testes:
+
+### Frontend
 
 ```
-Give an example
+$ cd ./beep-web-fron
+$ ng test
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
+### Frontend
 ```
-Give an example
+$ cd ./beep-backend
+$ ???
 ```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+ 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **ZIDANE Abderrazak** - *Initial work* - [rezid](https://github.com/rezid)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* **Aissata Ba**
