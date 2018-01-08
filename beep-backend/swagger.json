@@ -1,0 +1,369 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Room Booking Application API",
+    "description": "Documentation for the API",
+    "license": {
+      "name": " ",
+      "url": " "
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Room Booking",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/signup": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "parameters": [
+        {
+          "name": "userId",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user with given ID",
+        "responses": {
+          "200": {
+            "description": "User is found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservation/": {
+      "post": {
+        "tags": [
+          "Reservation"
+        ],
+        "description": "Create new Reservation in system",
+        "parameters": [
+          {
+            "name": "reservation",
+            "in": "body",
+            "description": "Reservation that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Reservation"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New Reservation was created",
+            "schema": {
+              "$ref": "#/definitions/Reservation"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservation/{id_room}": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "description": "get a Reservation from data base",
+        "parameters": [
+          {
+            "name": "id_room",
+            "in": "params",
+            "description": "get reservation by ID"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New Reservation was created",
+            "schema": {
+              "$ref": "#/definitions/Reservation"
+            }
+          }
+        }
+      }
+    },
+    "/api/rooms/": {
+      "get": {
+        "tags": [
+          "Rooms"
+        ],
+        "summary": "Get List of rooms",
+        "responses": {
+          "200": {
+            "count": "number of rooms",
+            "schema": {
+              "$ref": "#/definitions/Rooms"
+            }
+          }
+        }
+      }
+    },
+    "/api/rooms/{id}": {
+      "get": {
+        "tags": [
+          "Rooms"
+        ],
+        "description": "get a Room from data base",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "params",
+            "description": "get room by ID"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New room was created",
+            "schema": {
+              "$ref": "#/definitions/Room"
+            }
+          }
+        }
+      }
+    },
+    "/api/rooms/search/": {
+      "post": {
+        "tags": [
+          "Rooms"
+        ],
+        "description": "search for a room with many creter",
+        "parameters": [
+          {
+            "name": "postal_code",
+            "in": "body",
+            "required": false,
+            "description": "code postal",
+            "type": "string"},
+
+          {"name": "price_min",
+            "in": "body",
+            "required": false,
+            "description": "price min of the room that we want to find",
+            "type": "string"},
+
+          {"name": "price_max",
+            "in": "body",
+            "required": false,
+            "description": "price max of the room that we want to find",
+            "type": "string"},
+
+          {"name": "size_min",
+            "in": "body",
+            "required": false,
+            "description": "size min of the room that we want to find",
+            "type": "string"},
+
+          {"name": "size_max",
+            "in": "body",
+            "required": false,
+            "description": "size max of the room that we want to find",
+            "type": "string"},
+
+          {"name": "type",
+            "in": "body",
+            "required": false,
+            "description": "type of the room that we want to find",
+            "type": "array"}
+
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New Reservation was created",
+            "schema": {
+              "$ref": "#/definitions/Rooms"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "email",
+        "password",
+        "first_name",
+        "last_name",
+        "mobile"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string",
+          "uniqueItems": false
+        },
+        "first_name": {
+          "type": "string",
+          "uniqueItems": false
+        },
+        "last_name": {
+          "type": "string",
+          "uniqueItems": false
+        },
+        "mobile": {
+          "type": "string",
+          "uniqueItems": false
+        },
+        "date_of_birth": {
+          "type": "Date",
+          "uniqueItems": false
+        },
+        "avatar_url": {
+          "type": "string",
+          "uniqueItems": false
+        }
+      }
+    },
+    "Room": {
+      "required": [
+        "name",
+        "description",
+        "street_number",
+        "street_name",
+        "city",
+        "postal_code",
+        "country",
+        "capacity",
+        "type",
+        "room_number",
+        "email_owner",
+        "price",
+        "size"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "uniqueItems": false
+        },
+        "description": {
+          "type": "string",
+          "uniqueItems": false
+        },
+        "street_number": {
+          "type": "Number",
+          "uniqueItems": false
+        },
+        "street_name": {
+          "type": "Number",
+          "uniqueItems": false
+        },
+        "city": {
+          "type": "Number",
+          "uniqueItems": false
+        },
+        "postal_code": {
+          "type": "Number"
+        },
+        "country": {
+          "type": "String"
+        },
+        "capacity": {
+          "type": "Number",
+          "uniqueItems": false
+        },
+        "type": {
+          "type": "string",
+          "uniqueItems": false
+        },
+        "room_number": {
+          "type": "Number",
+          "uniqueItems": false
+        },
+        "email_owner": {
+          "type": "string",
+          "uniqueItems": false
+        },
+        "price": {
+          "type": "Number",
+          "uniqueItems": false
+        },
+        "size": {
+          "type": "Number",
+          "uniqueItems": false
+        }
+      }
+    },
+    "Reservation": {
+      "required": [
+        "id_room",
+        "start_date",
+        "end_date"
+      ],
+      "properties": {
+        "id_room": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "start_date": {
+          "type": "string"
+        },
+        "end_date": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

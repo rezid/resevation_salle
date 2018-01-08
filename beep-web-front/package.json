@@ -8,7 +8,8 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compodoc": "./node_modules/.bin/compodoc -p ./tsconfig.json"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "@compodoc/compodoc": "^1.0.5",
     "angular-calendar": "^0.22.3",
     "bootstrap": "^3.3.7",
     "bootstrap-sass": "^3.3.7",

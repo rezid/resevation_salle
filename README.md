@@ -128,12 +128,15 @@ $ cd ./beep-web-fron
 $ ng test
 ```
 
-### Frontend
+### Backend
 ```
 $ cd ./beep-backend
-$ ???
+$ npm test
 ```
  
+## Documentaion
+Une fois le backend lancer, on peut voir une petite parti de la documentation grace a ce lien:
+http://localhost:3000/api-docs/
 
 ## Autheurs
 
